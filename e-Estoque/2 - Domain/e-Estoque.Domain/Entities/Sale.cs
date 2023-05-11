@@ -1,9 +1,4 @@
 ﻿using e_Estoque.Domain.Entities.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Domain.Entities
 {
@@ -24,7 +19,7 @@ namespace e_Estoque.Domain.Entities
         public Guid IdCustomer { get; set; }
         public Customer Customer { get; set; }
 
-        public virtual IEnumerable<Product> Products { get; set; }
+        public virtual IEnumerable<SaleProduct> SaleProduct { get; set; }
 
         #endregion
     }

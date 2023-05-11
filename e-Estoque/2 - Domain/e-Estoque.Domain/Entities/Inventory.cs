@@ -14,13 +14,10 @@ namespace e_Estoque.Domain.Entities
 
         #region EFCRelations
         public Guid IdProduct { get; set; }
-        public Product Product { get; set; }
-
-        public Guid IdProvider { get; set; }
-        public Provider Provider { get; set; }
+        public virtual Product Product { get; set; }
 
         #endregion
 
-        
+
     }
 }

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace e_Estoque.Domain.Entities
+﻿namespace e_Estoque.Domain.Entities
 {
     public class Company : Entity
     {
         public string Name { get; set; }
-        public string Trade { get; set; }
+        public string DocId { get; set; }
+        public string Email { get; set; }
+        public string Description { get; set; }
+        public string PhoneNumber { get; set; }
 
-        public virtual IEnumerable<CompanyAdresss> CompanyAdresss { get; set; }
+        public virtual IEnumerable<CompanyAdress> CompanyAdresss { get; set; }
     }
 }

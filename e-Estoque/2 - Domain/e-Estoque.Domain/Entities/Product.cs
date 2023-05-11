@@ -20,8 +20,12 @@ namespace e_Estoque.Domain.Entities
         public string Image { get; set; }
 
         #region EFCRelations
+
         public Guid IdCategory { get; set; }
         public virtual Category Category { get; set; }
+
+        public Guid IdCompany { get; set; }
+        public virtual Company Company { get; set; }
 
         public virtual IEnumerable<Inventory> Inventories { get; set; }
 

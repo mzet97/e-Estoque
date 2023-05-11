@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_Estoque.Domain.Entities
+namespace e_Estoque.Domain.Interfaces.Repositories
 {
-    public class CompanyAdresss : Adresss
+    public interface ITaxRepository
     {
     }
 }

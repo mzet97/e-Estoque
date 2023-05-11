@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>e_Estoque.Service</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2 - Domain\e-Estoque.Domain\e-Estoque.Domain.csproj" />
+    <ProjectReference Include="..\..\4 - Infra\4.2 - CrossCutting\e-Estoque.CrossCutting\e-Estoque.CrossCutting.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,17 +1,15 @@
 ﻿@model IEnumerable<e_Estoque.App.ViewModels.Category.CategoryViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categories";
 }
 
-<h1>Index</h1>
+<h1>List of Categories</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+
+<table class="table table-primary table-striped table-hover table-bordered">
     <thead>
-        <tr>
+        <tr class="table-success">
             <th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
@@ -33,13 +31,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.DeletedAt)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="table-info">
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
@@ -62,10 +60,22 @@
                     @Html.DisplayFor(modelItem => item.DeletedAt)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
-                    @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
+                    @Html.ActionLink("", "Edit", new {  id=item.Id  }, new { @class = "bi bi-pencil", title = "Confirm"})
+                    @Html.ActionLink("", "Delete", new {  id=item.Id  }, new { @class = "bi bi-x-circle", title = "Confirm"})
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-auto me-auto">
+            <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle"></i> Create New</a>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-primary" asp-action="Download"><i class="bi bi-download"></i> Export</a>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ClosedXML.Excel;
+using ClosedXML.Extensions;
 using e_Estoque.App.ViewModels.Category;
 using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
@@ -6,6 +8,7 @@ using e_Estoque.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace e_Estoque.App.Controllers
 {
@@ -99,6 +102,42 @@ namespace e_Estoque.App.Controllers
             {
                 return View();
             }
+        }
+
+        public async Task<IActionResult> Download()
+        {
+            var list = await _categoryService.GetAll();
+
+            var wb = new XLWorkbook();
+            wb.Worksheets.Add(GetDataTable(list.ToList()));
+
+            return wb.Deliver("categories.xlsx");
+        }
+
+        public DataTable GetDataTable(List<Category> categories)
+        {
+            DataTable dataTable = new DataTable("Categories");
+            dataTable.Columns.Add("Id");
+            dataTable.Columns.Add("Description");
+            dataTable.Columns.Add("ShortDescription");
+            dataTable.Columns.Add("CreatedAt");
+            dataTable.Columns.Add("UpdatedAt");
+            dataTable.Columns.Add("DeletedAt");
+
+            foreach (var category in categories)
+            {
+                var row = dataTable.NewRow();
+                row["Id"] = category.Id;
+                row["Description"] = category.Description;
+                row["ShortDescription"] = category.ShortDescription;
+                row["CreatedAt"] = category.CreatedAt;
+                row["UpdatedAt"] = category.UpdatedAt;
+                row["DeletedAt"] = category.DeletedAt;
+
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
         }
     }
 }

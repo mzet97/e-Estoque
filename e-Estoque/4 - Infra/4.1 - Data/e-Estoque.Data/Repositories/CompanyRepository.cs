@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace e_Estoque.Data.Repositories
 {
-    public class CompanyRepository : Repository<CompanyAdress>, ICompanyRepository
+    public class CompanyRepository : Repository<Company>, ICompanyRepository
     {
         public CompanyRepository(
             EstoqueDbContext db, 
             INotifier notifier) : base(db, notifier)
         {
         }
+
     }
 }

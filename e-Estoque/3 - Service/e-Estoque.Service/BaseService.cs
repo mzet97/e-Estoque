@@ -8,8 +8,8 @@ namespace e_Estoque.Service
 {
     public abstract class BaseService
     {
-        private readonly INotifier _notifier;
-        private readonly IUnitOfWork _unitOfWork;
+        protected readonly INotifier _notifier;
+        protected readonly IUnitOfWork _unitOfWork;
 
         protected BaseService(
             INotifier notifier, 

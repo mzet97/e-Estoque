@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace e_Estoque.Data.Repositories
 {
-    public class CustomerAdressRepository : Repository<Customer>, ICustomerAdressRepository
+    public class CustomerAdressRepository : Repository<CustomerAdress>, ICustomerAdressRepository
     {
         public CustomerAdressRepository(
             EstoqueDbContext db, 

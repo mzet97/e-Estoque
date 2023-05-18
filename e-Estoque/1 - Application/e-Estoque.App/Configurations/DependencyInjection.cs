@@ -7,6 +7,7 @@ using e_Estoque.Domain.Interfaces.Repositories;
 using e_Estoque.Domain.Interfaces.Services;
 using e_Estoque.Service;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace e_Estoque.App.Configurations
 {
@@ -15,6 +16,7 @@ namespace e_Estoque.App.Configurations
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddScoped<EstoqueDbContext>();
+            services.AddScoped<HttpContextAccessor>();
 
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

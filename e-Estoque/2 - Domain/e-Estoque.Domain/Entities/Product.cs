@@ -27,8 +27,6 @@ namespace e_Estoque.Domain.Entities
         public Guid IdCompany { get; set; }
         public virtual Company Company { get; set; }
 
-        public virtual IEnumerable<Inventory> Inventories { get; set; }
-
         #endregion
     }
 }

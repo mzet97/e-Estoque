@@ -8,6 +8,7 @@
         public string Description { get; set; }
         public string PhoneNumber { get; set; }
 
-        public virtual IEnumerable<CompanyAdress> CompanyAdresss { get; set; }
+        public Guid IdCompanyAdress { get; set; }
+        public virtual CompanyAdress CompanyAdress { get; set; }
     }
 }

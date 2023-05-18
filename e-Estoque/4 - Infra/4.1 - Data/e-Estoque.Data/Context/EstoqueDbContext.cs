@@ -1,5 +1,6 @@
 ﻿using e_Estoque.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace e_Estoque.Data.Context
 {
@@ -14,19 +15,19 @@ namespace e_Estoque.Data.Context
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Tax> Taxs { get; set; }
 
-        public EstoqueDbContext(DbContextOptions options) : base(options)
+        public EstoqueDbContext(
+            DbContextOptions options) : base(options)
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.LogTo(Console.WriteLine);
-            //optionsBuilder.UseLazyLoadingProxies();
+            //ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            //ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("public");
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EstoqueDbContext).Assembly);
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;

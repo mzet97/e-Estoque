@@ -23,7 +23,7 @@ namespace e_Estoque.Data.Mappings
 
             builder
                 .HasOne(x => x.Sale)
-                .WithMany()
+                .WithMany(x => x.SaleProduct)
                 .HasForeignKey(x => x.IdSale);
 
         }

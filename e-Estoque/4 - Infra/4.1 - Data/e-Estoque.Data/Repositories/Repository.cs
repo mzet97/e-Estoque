@@ -24,12 +24,12 @@ namespace e_Estoque.Data.Repositories
             _notifier = notifier;
         }
 
-        public async Task Add(TEntity entity)
+        public virtual async Task Add(TEntity entity)
         {
             await DbSet.AddAsync(entity);
         }
 
-        public async Task<bool> Commit()
+        public virtual async Task<bool> Commit()
         {
             var result = await Db.SaveChangesAsync();
             return await Task.FromResult(result > 0);
@@ -40,22 +40,22 @@ namespace e_Estoque.Data.Repositories
             Db?.Dispose();
         }
 
-        public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
             return await DbSet.ToListAsync();
         }
 
-        public async Task<TEntity> GetById(Guid id)
+        public virtual async Task<TEntity> GetById(Guid id)
         {
             return await DbSet.FindAsync(id);
         }
 
-        public async Task Remove(Guid id)
+        public virtual async Task Remove(Guid id)
         {
             var entity = await GetById(id);
             entity.UpdatedAt = DateTime.Now;
@@ -63,7 +63,7 @@ namespace e_Estoque.Data.Repositories
             DbSet.Update(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> Search(
+        public virtual async Task<IEnumerable<TEntity>> Search(
             Expression<Func<TEntity, bool>> predicate = null, 
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
             int? pageSize = null, 
@@ -109,7 +109,7 @@ namespace e_Estoque.Data.Repositories
             return await query.ToListAsync();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             entity.UpdatedAt = DateTime.Now;
             DbSet.Update(entity);

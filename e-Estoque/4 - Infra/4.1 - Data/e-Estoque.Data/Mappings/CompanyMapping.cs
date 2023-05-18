@@ -29,6 +29,13 @@ namespace e_Estoque.Data.Mappings
             builder.Property(c => c.Description)
                 .IsRequired()
                 .HasColumnType("varchar(5000)");
+
+            builder.Property(x => x.IdCompanyAdress).IsRequired();
+
+            builder
+                .HasOne(x => x.CompanyAdress)
+                .WithMany()
+                .HasForeignKey(x => x.IdCompanyAdress);
         }
     }
 }

@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", "{A538F8F3-2308-4E44-8E47-62877B509B4A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{D4D52027-8AC4-4F2F-B6E8-DB7851EFF89F}"
+	ProjectSection(SolutionItems) = preProject
+		4 - Infra\4.1 - Data\e-Estoque.Data\UnitOfWork.cs = 4 - Infra\4.1 - Data\e-Estoque.Data\UnitOfWork.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-Estoque.Domain", "2 - Domain\e-Estoque.Domain\e-Estoque.Domain.csproj", "{2CC6B00B-E723-4359-A6AC-061B7B4F6987}"
 EndProject
@@ -23,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-Estoque.CrossCutting", "4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-Estoque.Service", "3 - Service\e-Estoque.Service\e-Estoque.Service.csproj", "{AE025593-953E-4D74-82FD-078804CCD6F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e-Estoque.App", "1 - Application\e-Estoque.App\e-Estoque.App.csproj", "{8E0ABF83-93E8-4BF7-9564-0139441CCD53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-Estoque.App", "1 - Application\e-Estoque.App\e-Estoque.App.csproj", "{8E0ABF83-93E8-4BF7-9564-0139441CCD53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

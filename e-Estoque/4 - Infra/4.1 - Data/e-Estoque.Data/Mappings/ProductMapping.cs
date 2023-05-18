@@ -51,7 +51,7 @@ namespace e_Estoque.Data.Mappings
 
             builder
                 .HasOne(x => x.Category)
-                .WithMany()
+                .WithMany(x => x.Products)
                 .HasForeignKey(x => x.IdCategory);
 
             builder.Property(x => x.IdCompany)

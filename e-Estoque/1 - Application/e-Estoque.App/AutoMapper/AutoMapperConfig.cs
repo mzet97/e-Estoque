@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using e_Estoque.App.ViewModels.Category;
+using e_Estoque.Domain.Entities;
 
 namespace e_Estoque.App.AutoMapper
 {
@@ -6,7 +8,8 @@ namespace e_Estoque.App.AutoMapper
     {
         public AutoMapperConfig()
         {
-            
+            CreateMap<Category, CategoryCreatedViewModel>().ReverseMap();
+            CreateMap<Category, CategoryViewModel>().ReverseMap();
         }
     }
 }

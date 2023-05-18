@@ -6,7 +6,19 @@ namespace e_Estoque.App.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+
+            if(currentUser != null)
+            {
+                var identity = currentUser.Identities.FirstOrDefault();
+
+                if (identity != null && identity.IsAuthenticated)
+                {
+                    return View();
+                }
+            }
+
+            return Redirect("Identity/Account/Login");
         }
     }
 }

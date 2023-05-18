@@ -1,21 +1,31 @@
-﻿using e_Estoque.App.ViewModels.Category;
+﻿using AutoMapper;
+using e_Estoque.App.ViewModels.Category;
+using e_Estoque.CrossCutting.Notifications;
+using e_Estoque.Domain.Entities;
+using e_Estoque.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_Estoque.App.Controllers
 {
-    public class CategoryController : Controller
+    [Authorize]
+    public class CategoryController : BaseController
     {
-        // GET: CategoryController
-        public ActionResult Index()
+        private readonly ICategoryService _categoryService;
+        public CategoryController(
+            INotifier notifier,
+            IMapper mapper,
+            ICategoryService categoryService) : base(notifier, mapper)
         {
-            return View(new List<CategoryViewModel>());
+            _categoryService = categoryService;
         }
 
-        // GET: CategoryController/Details/5
-        public ActionResult Details(int id)
+        // GET: CategoryController
+        public async Task<IActionResult> Index()
         {
-            return View(new CategoryViewModel());
+            var list = await _categoryService.GetAll();
+            return View(_mapper.Map<IEnumerable<CategoryViewModel>>(list));
         }
 
         // GET: CategoryController/Create
@@ -27,10 +37,13 @@ namespace e_Estoque.App.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CategoryCreatedViewModel viewModel)
+        public async Task<IActionResult> Create(CategoryCreatedViewModel viewModel)
         {
             try
             {
+                var entity = _mapper.Map<Category>(viewModel);
+                await _categoryService.Create(entity);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -40,18 +53,21 @@ namespace e_Estoque.App.Controllers
         }
 
         // GET: CategoryController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            return View(new CategoryViewModel());
+            var entity = await _categoryService.GetById(id);
+            return View(_mapper.Map<CategoryViewModel>(entity));
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CategoryViewModel viewModel)
+        public async Task<IActionResult> Edit(Guid id, CategoryViewModel viewModel)
         {
             try
             {
+                var entity = _mapper.Map<Category>(viewModel);
+                await _categoryService.Edit(id, entity);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -61,18 +77,22 @@ namespace e_Estoque.App.Controllers
         }
 
         // GET: CategoryController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return View();
+            var entity = await _categoryService.GetById(id);
+            return View(_mapper.Map<CategoryViewModel>(entity));
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, CategoryViewModel viewModel)
+        public async Task<IActionResult> Delete(Guid id, CategoryViewModel viewModel)
         {
             try
             {
+                var entity = _mapper.Map<Category>(viewModel);
+                await _categoryService.Delete(id, entity);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

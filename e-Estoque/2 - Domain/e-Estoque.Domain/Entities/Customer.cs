@@ -7,7 +7,7 @@
         public string Email { get; set; }
         public string Description { get; set; }
         public string PhoneNumber { get; set; }
-
-        public virtual IEnumerable<CustomerAdress> CustomerAddress { get; set; }
+        public Guid IdCustomerAddress { get; set; }
+        public virtual CustomerAdress CustomerAddress { get; set; }
     }
 }

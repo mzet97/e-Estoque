@@ -17,7 +17,6 @@ namespace e_Estoque.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("public")
                 .HasAnnotation("ProductVersion", "6.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -52,7 +51,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", "public");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Company", b =>
@@ -79,6 +78,9 @@ namespace e_Estoque.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<Guid>("IdCompanyAdress")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
@@ -92,7 +94,9 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies", "public");
+                    b.HasIndex("IdCompanyAdress");
+
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.CompanyAdress", b =>
@@ -104,9 +108,6 @@ namespace e_Estoque.Data.Migrations
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
-
-                    b.Property<Guid?>("CompanyId1")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Complement")
                         .IsRequired()
@@ -125,9 +126,6 @@ namespace e_Estoque.Data.Migrations
                     b.Property<string>("District")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
-
-                    b.Property<Guid>("IdCompany")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Latitude")
                         .IsRequired()
@@ -158,11 +156,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId1");
-
-                    b.HasIndex("IdCompany");
-
-                    b.ToTable("CategoriesAdresss", "public");
+                    b.ToTable("CategoriesAdresss");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>
@@ -189,6 +183,9 @@ namespace e_Estoque.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<Guid>("IdCustomerAddress")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
@@ -202,7 +199,9 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", "public");
+                    b.HasIndex("IdCustomerAddress");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.CustomerAdress", b =>
@@ -226,18 +225,12 @@ namespace e_Estoque.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("CustomerId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("District")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
-
-                    b.Property<Guid>("IdCustomer")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Latitude")
                         .IsRequired()
@@ -268,11 +261,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId1");
-
-                    b.HasIndex("IdCustomer");
-
-                    b.ToTable("CustomerAdress", "public");
+                    b.ToTable("CustomerAdress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Inventory", b =>
@@ -293,9 +282,6 @@ namespace e_Estoque.Data.Migrations
                     b.Property<Guid>("IdProduct")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ProductId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("INT");
 
@@ -306,18 +292,13 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdProduct");
 
-                    b.HasIndex("ProductId1");
-
-                    b.ToTable("inventories", "public");
+                    b.ToTable("inventories");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -368,13 +349,11 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("IdCategory");
 
                     b.HasIndex("IdCompany");
 
-                    b.ToTable("Products", "public");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Sale", b =>
@@ -423,7 +402,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCustomer");
 
-                    b.ToTable("Sales", "public");
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.SaleProduct", b =>
@@ -444,9 +423,6 @@ namespace e_Estoque.Data.Migrations
                     b.Property<Guid>("IdSale")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("SaleId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -456,9 +432,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdSale");
 
-                    b.HasIndex("SaleId1");
-
-                    b.ToTable("SaleProduct", "public");
+                    b.ToTable("SaleProduct");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Tax", b =>
@@ -494,35 +468,27 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCategory");
 
-                    b.ToTable("Taxs", "public");
+                    b.ToTable("Taxs");
                 });
 
-            modelBuilder.Entity("e_Estoque.Domain.Entities.CompanyAdress", b =>
+            modelBuilder.Entity("e_Estoque.Domain.Entities.Company", b =>
                 {
-                    b.HasOne("e_Estoque.Domain.Entities.Company", null)
-                        .WithMany("CompanyAdresss")
-                        .HasForeignKey("CompanyId1");
-
-                    b.HasOne("e_Estoque.Domain.Entities.Company", "Company")
+                    b.HasOne("e_Estoque.Domain.Entities.CompanyAdress", "CompanyAdress")
                         .WithMany()
-                        .HasForeignKey("IdCompany")
+                        .HasForeignKey("IdCompanyAdress")
                         .IsRequired();
 
-                    b.Navigation("Company");
+                    b.Navigation("CompanyAdress");
                 });
 
-            modelBuilder.Entity("e_Estoque.Domain.Entities.CustomerAdress", b =>
+            modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>
                 {
-                    b.HasOne("e_Estoque.Domain.Entities.Customer", null)
-                        .WithMany("CustomerAddress")
-                        .HasForeignKey("CustomerId1");
-
-                    b.HasOne("e_Estoque.Domain.Entities.Customer", "Customer")
+                    b.HasOne("e_Estoque.Domain.Entities.CustomerAdress", "CustomerAddress")
                         .WithMany()
-                        .HasForeignKey("IdCustomer")
+                        .HasForeignKey("IdCustomerAddress")
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("CustomerAddress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Inventory", b =>
@@ -532,21 +498,13 @@ namespace e_Estoque.Data.Migrations
                         .HasForeignKey("IdProduct")
                         .IsRequired();
 
-                    b.HasOne("e_Estoque.Domain.Entities.Product", null)
-                        .WithMany("Inventories")
-                        .HasForeignKey("ProductId1");
-
                     b.Navigation("Product");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Product", b =>
                 {
-                    b.HasOne("e_Estoque.Domain.Entities.Category", null)
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("e_Estoque.Domain.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("IdCategory")
                         .IsRequired();
 
@@ -578,13 +536,9 @@ namespace e_Estoque.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("e_Estoque.Domain.Entities.Sale", "Sale")
-                        .WithMany()
+                        .WithMany("SaleProduct")
                         .HasForeignKey("IdSale")
                         .IsRequired();
-
-                    b.HasOne("e_Estoque.Domain.Entities.Sale", null)
-                        .WithMany("SaleProduct")
-                        .HasForeignKey("SaleId1");
 
                     b.Navigation("Product");
 
@@ -604,21 +558,6 @@ namespace e_Estoque.Data.Migrations
             modelBuilder.Entity("e_Estoque.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("e_Estoque.Domain.Entities.Company", b =>
-                {
-                    b.Navigation("CompanyAdresss");
-                });
-
-            modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>
-                {
-                    b.Navigation("CustomerAddress");
-                });
-
-            modelBuilder.Entity("e_Estoque.Domain.Entities.Product", b =>
-                {
-                    b.Navigation("Inventories");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Sale", b =>

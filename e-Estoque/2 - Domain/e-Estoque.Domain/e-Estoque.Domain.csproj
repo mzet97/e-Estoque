@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Validations\" />
     <Folder Include="Interfaces\Services\" />
   </ItemGroup>
 

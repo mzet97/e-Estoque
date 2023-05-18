@@ -27,7 +27,7 @@ namespace e_Estoque.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoriesAdresss",
+                name: "CompanyAdress",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -47,7 +47,7 @@ namespace e_Estoque.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoriesAdresss", x => x.Id);
+                    table.PrimaryKey("PK_CompanyAdress", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -116,9 +116,9 @@ namespace e_Estoque.Data.Migrations
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Companies_CategoriesAdresss_IdCompanyAdress",
+                        name: "FK_Companies_CompanyAdress_IdCompanyAdress",
                         column: x => x.IdCompanyAdress,
-                        principalTable: "CategoriesAdresss",
+                        principalTable: "CompanyAdress",
                         principalColumn: "Id");
                 });
 
@@ -331,7 +331,7 @@ namespace e_Estoque.Data.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "CategoriesAdresss");
+                name: "CompanyAdress");
 
             migrationBuilder.DropTable(
                 name: "CustomerAdress");

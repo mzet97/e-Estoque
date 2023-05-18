@@ -3075,3 +3075,43 @@ WHERE [c].[DeletedAt] IS NULL
 2023-05-18 15:10:30.272 -03:00 [INF] Executed action e_Estoque.App.Controllers.CategoryController.Download (e-Estoque.App) in 21.8384ms
 2023-05-18 15:10:30.274 -03:00 [INF] Executed endpoint 'e_Estoque.App.Controllers.CategoryController.Download (e-Estoque.App)'
 2023-05-18 15:10:30.276 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7217/Category/Download - - - 200 7194 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 31.0091ms
+2023-05-18 15:22:29.284 -03:00 [FTL] Host terminated unexpectedly
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\TI\git\v2\e-Estoque\e-Estoque\1 - Application\e-Estoque.App\Program.cs:line 43
+2023-05-18 15:22:29.362 -03:00 [INF] Server Shutting down...
+2023-05-18 15:22:39.895 -03:00 [FTL] Host terminated unexpectedly
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\TI\git\v2\e-Estoque\e-Estoque\1 - Application\e-Estoque.App\Program.cs:line 43
+2023-05-18 15:22:39.923 -03:00 [INF] Server Shutting down...
+2023-05-18 15:22:43.856 -03:00 [FTL] Host terminated unexpectedly
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\TI\git\v2\e-Estoque\e-Estoque\1 - Application\e-Estoque.App\Program.cs:line 43
+2023-05-18 15:22:43.883 -03:00 [INF] Server Shutting down...
+2023-05-18 15:23:20.522 -03:00 [FTL] Host terminated unexpectedly
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\TI\git\v2\e-Estoque\e-Estoque\1 - Application\e-Estoque.App\Program.cs:line 43
+2023-05-18 15:23:20.551 -03:00 [INF] Server Shutting down...
+2023-05-18 15:24:06.619 -03:00 [FTL] Host terminated unexpectedly
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+StopTheHostException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in D:\TI\git\v2\e-Estoque\e-Estoque\1 - Application\e-Estoque.App\Program.cs:line 43
+2023-05-18 15:24:06.648 -03:00 [INF] Server Shutting down...

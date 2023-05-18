@@ -156,7 +156,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoriesAdresss");
+                    b.ToTable("CompanyAdress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>

@@ -9,7 +9,7 @@ namespace e_Estoque.Data.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyAdress> CategoriesAdresss { get; set; }
+        public DbSet<CompanyAdress> CompanyAdress { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Inventory> inventories { get; set; }
         public DbSet<Sale> Sales { get; set; }

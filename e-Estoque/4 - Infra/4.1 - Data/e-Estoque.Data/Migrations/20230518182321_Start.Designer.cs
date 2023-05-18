@@ -12,7 +12,7 @@ using e_Estoque.Data.Context;
 namespace e_Estoque.Data.Migrations
 {
     [DbContext(typeof(EstoqueDbContext))]
-    [Migration("20230518001024_Start")]
+    [Migration("20230518182321_Start")]
     partial class Start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,7 +158,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoriesAdresss");
+                    b.ToTable("CompanyAdress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>

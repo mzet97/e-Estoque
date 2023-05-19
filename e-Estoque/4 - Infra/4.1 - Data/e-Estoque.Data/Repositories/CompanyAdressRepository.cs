@@ -17,5 +17,7 @@ namespace e_Estoque.Data.Repositories
             INotifier notifier) : base(db, notifier)
         {
         }
+
+
     }
 }

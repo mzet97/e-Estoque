@@ -25,3 +25,9 @@ input {
 footer {
     background-color: #7ccfeb;
 }
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+}

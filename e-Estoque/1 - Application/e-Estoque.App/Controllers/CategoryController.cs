@@ -120,7 +120,7 @@ namespace e_Estoque.App.Controllers
             var wb = new XLWorkbook();
             wb.Worksheets.Add(GetDataTable(list.ToList()));
 
-            return wb.Deliver("categories.xlsx");
+            return wb.Deliver($"categories-{DateTime.Now.ToString()}.xlsx");
         }
 
         public DataTable GetDataTable(List<Category> categories)

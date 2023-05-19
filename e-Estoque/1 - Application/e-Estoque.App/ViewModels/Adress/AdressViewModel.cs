@@ -1,6 +1,6 @@
-﻿namespace e_Estoque.Domain.Entities
+﻿namespace e_Estoque.App.ViewModels.Adress
 {
-    public class Adress : Entity
+    public class AdressViewModel : BaseViewModel
     {
         public string Street { get; set; }
         public string Number { get; set; }

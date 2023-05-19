@@ -3,6 +3,7 @@ using e_Estoque.App.Data;
 using e_Estoque.App.Middlewares;
 using e_Estoque.Data.Context;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -52,6 +53,10 @@ try
         app.UseExceptionHandler("/Error");
         app.UseHsts();
     }
+
+    app.UseRewriter(new RewriteOptions()
+            .Add(RewriteRouteRules.ReWriteRequests)
+            );
 
     app.UseHttpsRedirection();
     app.UseStaticFiles();

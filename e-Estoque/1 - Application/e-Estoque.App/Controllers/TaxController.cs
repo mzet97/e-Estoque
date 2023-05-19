@@ -143,7 +143,7 @@ namespace e_Estoque.App.Controllers
             var wb = new XLWorkbook();
             wb.Worksheets.Add(GetDataTable(list.ToList()));
 
-            return wb.Deliver("taxs.xlsx");
+            return wb.Deliver($"taxs-{DateTime.Now.ToString()}.xlsx");
         }
 
         public DataTable GetDataTable(List<Tax> taxs)

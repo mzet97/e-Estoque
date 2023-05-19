@@ -1,13 +1,9 @@
 ﻿using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
+using e_Estoque.Domain.Entities.Validations;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Service
 {
@@ -19,39 +15,90 @@ namespace e_Estoque.Service
         {
         }
 
-        public Task Create(Company entity)
+        public async Task Create(Company entity)
         {
-            throw new NotImplementedException();
+
+            if (!Validate(new CompanyValidation(), entity))
+            {
+                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new AdressValidation(), entity.CompanyAdress as Adress))
+            {
+                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            await _unitOfWork.RepositoryFactory.CompanyRepository.Create(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.CompanyRepository.Commit();
         }
 
-        public Task<IEnumerable<Company>> Find(Expression<Func<Company, bool>> predicate)
+        public async Task<IEnumerable<Company>> Find(Expression<Func<Company, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CompanyRepository.Find(predicate);
         }
 
-        public Task<IEnumerable<Company>> GetAll()
+        public async Task<IEnumerable<Company>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CompanyRepository.GetAll();
         }
 
-        public Task<Company> GetById(Guid id)
+        public async Task<Company> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CompanyRepository.GetById(id);
         }
 
-        public Task Remove(Guid id, Company entity)
+        public async Task Remove(Guid id, Company entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Tax invalida", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Tax não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            _unitOfWork.RepositoryFactory.CompanyRepository.Update(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.CompanyRepository.Commit();
         }
 
-        public Task<IEnumerable<Company>> Search(Expression<Func<Company, bool>> predicate = null, Func<IQueryable<Company>, IOrderedQueryable<Company>> orderBy = null, int? pageSize = null, int? pageIndex = null)
+        public async Task<IEnumerable<Company>> Search(Expression<Func<Company, bool>> predicate = null, Func<IQueryable<Company>, IOrderedQueryable<Company>> orderBy = null, int? pageSize = null, int? pageIndex = null)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CompanyRepository.Search(predicate, orderBy, pageSize, pageIndex);
         }
 
-        public Task Update(Guid id, Company entity)
+        public async Task Update(Guid id, Company entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Tax invalida", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new CompanyValidation(), entity))
+            {
+                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new AdressValidation(), entity.CompanyAdress as Adress))
+            {
+                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            _unitOfWork.RepositoryFactory.CompanyRepository.Update(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.CompanyRepository.Commit();
         }
     }
 }

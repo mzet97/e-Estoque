@@ -69,12 +69,6 @@ namespace e_Estoque.Service
                 return;
             }
 
-            if (!Validate(new TaxValidation(), entity))
-            {
-                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
-                return;
-            }
-
             var entityDB = await GetById(entity.Id);
 
             if (entityDB == null)

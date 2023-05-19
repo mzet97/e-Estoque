@@ -7,16 +7,16 @@ namespace e_Estoque.Domain.Entities.Validations
         public CategoryValidation()
         {
             RuleFor(c => c.Name)
-                .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")
-                .Length(2, 250).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres");
+                .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
+                .Length(2, 250).WithMessage("The {PropertyName} need to have between {MinLength} and {MaxLength} characters");
 
             RuleFor(c => c.ShortDescription)
-                .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")
-                .Length(2, 250).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres");
+                .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
+                .Length(2, 250).WithMessage("The {PropertyName} need to have between {MinLength} and {MaxLength} characters");
 
             RuleFor(c => c.Description)
-                .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")
-                .Length(2, 5000).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres");
+                .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
+                .Length(2, 5000).WithMessage("The {PropertyName} need to have between {MinLength} and {MaxLength} characters");
         }
     }
 }

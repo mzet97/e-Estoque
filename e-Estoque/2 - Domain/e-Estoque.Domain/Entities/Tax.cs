@@ -10,10 +10,10 @@ namespace e_Estoque.Domain.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
-
         public decimal Percentage { get; set; }
 
         #region EFCRelations
+
         public Guid IdCategory { get; set; }
         public virtual Category Category { get; set; }
 

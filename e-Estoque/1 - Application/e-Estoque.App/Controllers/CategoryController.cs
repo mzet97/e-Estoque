@@ -8,6 +8,7 @@ using e_Estoque.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System.Data;
 
 namespace e_Estoque.App.Controllers
@@ -16,6 +17,7 @@ namespace e_Estoque.App.Controllers
     public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
+
         public CategoryController(
             INotifier notifier,
             IMapper mapper,
@@ -49,8 +51,10 @@ namespace e_Estoque.App.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error(ex.Message, ex);
+
                 return View();
             }
         }
@@ -70,11 +74,14 @@ namespace e_Estoque.App.Controllers
             try
             {
                 var entity = _mapper.Map<Category>(viewModel);
-                await _categoryService.Edit(id, entity);
+                await _categoryService.Update(id, entity);
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error(ex.Message, ex);
+
                 return View();
             }
         }
@@ -94,12 +101,14 @@ namespace e_Estoque.App.Controllers
             try
             {
                 var entity = _mapper.Map<Category>(viewModel);
-                await _categoryService.Delete(id, entity);
+                await _categoryService.Remove(id, entity);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error(ex.Message, ex);
+
                 return View();
             }
         }
@@ -118,6 +127,7 @@ namespace e_Estoque.App.Controllers
         {
             DataTable dataTable = new DataTable("Categories");
             dataTable.Columns.Add("Id");
+            dataTable.Columns.Add("Name");
             dataTable.Columns.Add("Description");
             dataTable.Columns.Add("ShortDescription");
             dataTable.Columns.Add("CreatedAt");
@@ -128,6 +138,7 @@ namespace e_Estoque.App.Controllers
             {
                 var row = dataTable.NewRow();
                 row["Id"] = category.Id;
+                row["Name"] = category.Id;
                 row["Description"] = category.Description;
                 row["ShortDescription"] = category.ShortDescription;
                 row["CreatedAt"] = category.CreatedAt;

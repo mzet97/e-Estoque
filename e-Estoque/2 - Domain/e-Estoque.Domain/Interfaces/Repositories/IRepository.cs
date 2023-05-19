@@ -10,7 +10,7 @@ namespace e_Estoque.Domain.Interfaces.Repositories
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity
     {
-        Task Add(TEntity entity);
+        Task Create(TEntity entity);
         Task<TEntity> GetById(Guid id);
         Task<IEnumerable<TEntity>> GetAll();
         Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);

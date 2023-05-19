@@ -24,7 +24,7 @@ namespace e_Estoque.Data.Repositories
             _notifier = notifier;
         }
 
-        public virtual async Task Add(TEntity entity)
+        public virtual async Task Create(TEntity entity)
         {
             await DbSet.AddAsync(entity);
         }

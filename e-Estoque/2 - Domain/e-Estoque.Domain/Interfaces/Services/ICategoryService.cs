@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_Estoque.Domain.Interfaces.Services
 {
-    public interface ICategoryService
+    public interface ICategoryService : IService<Category>
     {
-        Task Create(Category entity);
-        Task<Category> GetById(Guid id);
-        Task<IEnumerable<Category>> GetAll();
-        Task Edit(Guid id, Category entity);
-        Task Delete(Guid id, Category entity);
     }
 }

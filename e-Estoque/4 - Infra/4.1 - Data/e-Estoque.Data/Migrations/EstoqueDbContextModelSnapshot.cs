@@ -51,7 +51,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Company", b =>
@@ -96,7 +96,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCompanyAdress");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.CompanyAdress", b =>
@@ -156,7 +156,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompanyAdress");
+                    b.ToTable("CompanyAdress", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>
@@ -201,7 +201,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCustomerAddress");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.CustomerAdress", b =>
@@ -261,7 +261,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerAdress");
+                    b.ToTable("CustomerAdress", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Inventory", b =>
@@ -292,7 +292,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdProduct");
 
-                    b.ToTable("inventories");
+                    b.ToTable("inventories", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Product", b =>
@@ -353,7 +353,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCompany");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Sale", b =>
@@ -402,7 +402,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCustomer");
 
-                    b.ToTable("Sales");
+                    b.ToTable("Sales", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.SaleProduct", b =>
@@ -432,7 +432,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdSale");
 
-                    b.ToTable("SaleProduct");
+                    b.ToTable("SaleProduct", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Tax", b =>
@@ -468,7 +468,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCategory");
 
-                    b.ToTable("Taxs");
+                    b.ToTable("Taxs", (string)null);
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Company", b =>

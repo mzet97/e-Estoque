@@ -27,7 +27,7 @@ namespace e_Estoque.Data.Mappings
 
             builder
                 .HasOne(x => x.Category)
-                .WithMany()
+                .WithMany(x => x.Taxs)
                 .HasForeignKey(x => x.IdCategory);
 
         }

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<e_Estoque.App.ViewModels.Category.CategoryViewModel>
+﻿@model IEnumerable<e_Estoque.App.ViewModels.Tax.TaxViewModel>
 
 @{
-    ViewData["Title"] = "Categories";
+    ViewData["Title"] = "index";
 }
 
-<h1>List of Categories</h1>
+<h1>List of taxs</h1>
 
 
 <table class="table table-primary table-striped table-hover table-bordered">
@@ -20,7 +20,10 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ShortDescription)
+                @Html.DisplayNameFor(model => model.Percentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCategory)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -48,8 +51,12 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ShortDescription)
+                    @Html.DisplayFor(modelItem => item.Percentage)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCategory)
+                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)
                 </td>
@@ -67,7 +74,6 @@
         }
     </tbody>
 </table>
-
 
 <div class="container">
     <div class="row">

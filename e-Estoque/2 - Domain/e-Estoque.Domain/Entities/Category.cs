@@ -12,6 +12,7 @@ namespace e_Estoque.Domain.Entities
         public string Description { get; set; }
         public string ShortDescription { get; set; }
 
+        public virtual IEnumerable<Tax> Taxs { get; set; }
         public virtual IEnumerable<Product> Products { get; set; }
     }
 }

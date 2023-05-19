@@ -1,5 +1,4 @@
 ﻿using Serilog;
-using System.Net;
 
 namespace e_Estoque.App.Middlewares
 {
@@ -20,21 +19,10 @@ namespace e_Estoque.App.Middlewares
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                Log.Error(ex.Message, ex);
+
+                await next(context);
             }
-        }
-
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
-        {
-            Log.Error(exception, "Error");
-
-            var code = HttpStatusCode.InternalServerError;
-
-            var result = System.Text.Json.JsonSerializer.Serialize(new { error = exception?.Message });
-
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)code;
-            return context.Response.WriteAsync(result);
         }
     }
 }

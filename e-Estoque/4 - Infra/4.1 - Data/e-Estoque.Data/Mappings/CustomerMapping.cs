@@ -30,12 +30,12 @@ namespace e_Estoque.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(5000)");
 
-            builder.Property(x => x.IdCustomerAddress).IsRequired();
+            builder.Property(x => x.IdCustomerAdress).IsRequired();
 
             builder
-                .HasOne(x => x.CustomerAddress)
+                .HasOne(x => x.CustomerAdress)
                 .WithMany()
-                .HasForeignKey(x => x.IdCustomerAddress);
+                .HasForeignKey(x => x.IdCustomerAdress);
         }
     }
 }

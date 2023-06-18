@@ -23,7 +23,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.14" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
     <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
@@ -36,6 +36,7 @@
     <ProjectReference Include="..\..\3 - Service\e-Estoque.Service\e-Estoque.Service.csproj" />
     <ProjectReference Include="..\..\4 - Infra\4.1 - Data\e-Estoque.Data\e-Estoque.Data.csproj" />
     <ProjectReference Include="..\..\4 - Infra\4.2 - CrossCutting\e-Estoque.CrossCutting\e-Estoque.CrossCutting.csproj" />
+    <ProjectReference Include="..\..\4 - Infra\e-Estoque.Infra\e-Estoque.Infra\e-Estoque.Infra.csproj" />
   </ItemGroup>
 
 </Project>

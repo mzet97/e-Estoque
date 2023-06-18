@@ -51,7 +51,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Company", b =>
@@ -96,7 +96,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCompanyAdress");
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.CompanyAdress", b =>
@@ -156,7 +156,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompanyAdress", (string)null);
+                    b.ToTable("CompanyAdress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>
@@ -183,7 +183,7 @@ namespace e_Estoque.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<Guid>("IdCustomerAddress")
+                    b.Property<Guid>("IdCustomerAdress")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -199,9 +199,9 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCustomerAddress");
+                    b.HasIndex("IdCustomerAdress");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.CustomerAdress", b =>
@@ -261,7 +261,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerAdress", (string)null);
+                    b.ToTable("CustomerAdress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Inventory", b =>
@@ -292,7 +292,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdProduct");
 
-                    b.ToTable("inventories", (string)null);
+                    b.ToTable("inventories");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Product", b =>
@@ -353,7 +353,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCompany");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Sale", b =>
@@ -402,7 +402,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCustomer");
 
-                    b.ToTable("Sales", (string)null);
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.SaleProduct", b =>
@@ -432,7 +432,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdSale");
 
-                    b.ToTable("SaleProduct", (string)null);
+                    b.ToTable("SaleProduct");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Tax", b =>
@@ -468,7 +468,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasIndex("IdCategory");
 
-                    b.ToTable("Taxs", (string)null);
+                    b.ToTable("Taxs");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Company", b =>
@@ -483,12 +483,12 @@ namespace e_Estoque.Data.Migrations
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>
                 {
-                    b.HasOne("e_Estoque.Domain.Entities.CustomerAdress", "CustomerAddress")
+                    b.HasOne("e_Estoque.Domain.Entities.CustomerAdress", "CustomerAdress")
                         .WithMany()
-                        .HasForeignKey("IdCustomerAddress")
+                        .HasForeignKey("IdCustomerAdress")
                         .IsRequired();
 
-                    b.Navigation("CustomerAddress");
+                    b.Navigation("CustomerAdress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Inventory", b =>
@@ -548,7 +548,7 @@ namespace e_Estoque.Data.Migrations
             modelBuilder.Entity("e_Estoque.Domain.Entities.Tax", b =>
                 {
                     b.HasOne("e_Estoque.Domain.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("Taxs")
                         .HasForeignKey("IdCategory")
                         .IsRequired();
 
@@ -558,6 +558,8 @@ namespace e_Estoque.Data.Migrations
             modelBuilder.Entity("e_Estoque.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Products");
+
+                    b.Navigation("Taxs");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Sale", b =>

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace e_Estoque.App.ViewModels.Company
+namespace e_Estoque.App.ViewModels.Customer
 {
-    public class CompanyCreatedViewModel
+    public class CustomerCreatedViewModel
     {
         [Required]
         [MinLength(3)]
@@ -29,6 +29,6 @@ namespace e_Estoque.App.ViewModels.Company
         [MaxLength(15)]
         public string PhoneNumber { get; set; }
 
-        public CompanyAdressCreatedViewModel CompanyAdress { get; set; }
+        public CustomerAdressCreatedViewModel CustomerAdress { get; set; }
     }
 }

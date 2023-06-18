@@ -1,0 +1,116 @@
+﻿@model e_Estoque.App.ViewModels.Customer.CustomerCreatedViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocId" class="control-label"></label>
+                <input asp-for="DocId" class="form-control" />
+                <span asp-validation-for="DocId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <h4>Adress</h4>
+            <hr />
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.Street" class="control-label"></label>
+                <input asp-for="CustomerAdress.Street" class="form-control" />
+                <span asp-validation-for="CustomerAdress.Street" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.Number" class="control-label"></label>
+                <input asp-for="CustomerAdress.Number" class="form-control" />
+                <span asp-validation-for="CustomerAdress.Number" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.Complement" class="control-label"></label>
+                <input asp-for="CustomerAdress.Complement" class="form-control" />
+                <span asp-validation-for="CustomerAdress.Complement" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.Neighborhood" class="control-label"></label>
+                <input asp-for="CustomerAdress.Neighborhood" class="form-control" />
+                <span asp-validation-for="CustomerAdress.Neighborhood" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.District" class="control-label"></label>
+                <input asp-for="CustomerAdress.District" class="form-control" />
+                <span asp-validation-for="CustomerAdress.District" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.City" class="control-label"></label>
+                <input asp-for="CustomerAdress.City" class="form-control" />
+                <span asp-validation-for="CustomerAdress.City" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.County" class="control-label"></label>
+                <input asp-for="CustomerAdress.County" class="form-control" />
+                <span asp-validation-for="CustomerAdress.County" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.ZipCode" class="control-label"></label>
+                <input asp-for="CustomerAdress.ZipCode" class="form-control" />
+                <span asp-validation-for="CustomerAdress.ZipCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.Latitude" class="control-label"></label>
+                <input asp-for="CustomerAdress.Latitude" class="form-control" />
+                <span asp-validation-for="CustomerAdress.Latitude" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerAdress.Longitude" class="control-label"></label>
+                <input asp-for="CustomerAdress.Longitude" class="form-control" />
+                <span asp-validation-for="CustomerAdress.Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

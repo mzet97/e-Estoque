@@ -13,6 +13,7 @@ namespace e_Estoque.Domain.Interfaces.Data
         ICompanyAdressRepository CompanyAdressRepository { get; }
         ICompanyRepository CompanyRepository { get; }
         ICustomerAdressRepository CustomerAdressRepository { get; }
+        ICustomerRepository CustomerRepository { get; }
         IInventoryRepository InventoryRepository { get; }
         IProductRepository ProductRepository { get; }
         ISaleProductRepository SaleProductRepository { get; }

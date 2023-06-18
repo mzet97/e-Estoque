@@ -1,13 +1,9 @@
 ﻿using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
+using e_Estoque.Domain.Entities.Validations;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Service
 {
@@ -19,39 +15,89 @@ namespace e_Estoque.Service
         {
         }
 
-        public Task Create(Customer entity)
+        public async Task Create(Customer entity)
         {
-            throw new NotImplementedException();
+            if (!Validate(new CustomerValidation(), entity))
+            {
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new AdressValidation(), entity.CustomerAdress as Adress))
+            {
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            await _unitOfWork.RepositoryFactory.CustomerRepository.Create(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.CustomerRepository.Commit();
         }
 
-        public Task<IEnumerable<Customer>> Find(Expression<Func<Customer, bool>> predicate)
+        public async Task<IEnumerable<Customer>> Find(Expression<Func<Customer, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CustomerRepository.Find(predicate);
         }
 
-        public Task<IEnumerable<Customer>> GetAll()
+        public async Task<IEnumerable<Customer>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CustomerRepository.GetAll();
         }
 
-        public Task<Customer> GetById(Guid id)
+        public async Task<Customer> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CustomerRepository.GetById(id);
         }
 
-        public Task Remove(Guid id, Customer entity)
+        public async Task Remove(Guid id, Customer entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Company invalida", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Company não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            _unitOfWork.RepositoryFactory.CustomerRepository.Update(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.CompanyRepository.Commit();
         }
 
-        public Task<IEnumerable<Customer>> Search(Expression<Func<Customer, bool>> predicate = null, Func<IQueryable<Customer>, IOrderedQueryable<Customer>> orderBy = null, int? pageSize = null, int? pageIndex = null)
+        public async Task<IEnumerable<Customer>> Search(Expression<Func<Customer, bool>> predicate = null, Func<IQueryable<Customer>, IOrderedQueryable<Customer>> orderBy = null, int? pageSize = null, int? pageIndex = null)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.CustomerRepository.Search(predicate, orderBy, pageSize, pageIndex);
         }
 
-        public Task Update(Guid id, Customer entity)
+        public async Task Update(Guid id, Customer entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Company invalida", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new CustomerValidation(), entity))
+            {
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new AdressValidation(), entity.CustomerAdress as Adress))
+            {
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            _unitOfWork.RepositoryFactory.CustomerRepository.Update(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.CustomerRepository.Commit();
         }
     }
 }

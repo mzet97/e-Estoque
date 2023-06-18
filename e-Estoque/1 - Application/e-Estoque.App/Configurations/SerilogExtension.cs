@@ -19,7 +19,8 @@ namespace e_Estoque.App.Configurations
                 .Filter.ByExcluding(Matching.FromSource("Microsoft.AspNetCore.StaticFiles"))
                 .Filter.ByExcluding(z => z.MessageTemplate.Text.Contains("Business error"))
                 .WriteTo.Async(wt => wt.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}"))
-                .WriteTo.File("log.txt")
+                .WriteTo.File("log-.log", rollingInterval: RollingInterval.Day)
+                .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
                 .CreateLogger();
         }
     }

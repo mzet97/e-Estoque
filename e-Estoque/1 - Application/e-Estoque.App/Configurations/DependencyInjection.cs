@@ -5,9 +5,8 @@ using e_Estoque.Data.Repositories;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Repositories;
 using e_Estoque.Domain.Interfaces.Services;
+using e_Estoque.Infra.Mail;
 using e_Estoque.Service;
-using Microsoft.AspNetCore.Mvc.DataAnnotations;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace e_Estoque.App.Configurations
 {
@@ -21,6 +20,7 @@ namespace e_Estoque.App.Configurations
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRepositoryFactory, RepositoryFactory>();
+            services.AddScoped<IEmailService, EmailService>();
 
             #region Repository
             services.AddScoped<ICategoryRepository, CategoryRepository>();

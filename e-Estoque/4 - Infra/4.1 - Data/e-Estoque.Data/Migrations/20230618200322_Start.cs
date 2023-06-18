@@ -132,7 +132,7 @@ namespace e_Estoque.Data.Migrations
                     Email = table.Column<string>(type: "varchar(100)", nullable: false),
                     Description = table.Column<string>(type: "varchar(5000)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "varchar(15)", nullable: false),
-                    IdCustomerAddress = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdCustomerAdress = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -141,8 +141,8 @@ namespace e_Estoque.Data.Migrations
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_CustomerAdress_IdCustomerAddress",
-                        column: x => x.IdCustomerAddress,
+                        name: "FK_Customers_CustomerAdress_IdCustomerAdress",
+                        column: x => x.IdCustomerAdress,
                         principalTable: "CustomerAdress",
                         principalColumn: "Id");
                 });
@@ -264,9 +264,9 @@ namespace e_Estoque.Data.Migrations
                 column: "IdCompanyAdress");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_IdCustomerAddress",
+                name: "IX_Customers_IdCustomerAdress",
                 table: "Customers",
-                column: "IdCustomerAddress");
+                column: "IdCustomerAdress");
 
             migrationBuilder.CreateIndex(
                 name: "IX_inventories_IdProduct",

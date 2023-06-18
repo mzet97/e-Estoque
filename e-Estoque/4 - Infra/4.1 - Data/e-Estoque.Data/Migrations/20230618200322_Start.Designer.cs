@@ -12,7 +12,7 @@ using e_Estoque.Data.Context;
 namespace e_Estoque.Data.Migrations
 {
     [DbContext(typeof(EstoqueDbContext))]
-    [Migration("20230518182321_Start")]
+    [Migration("20230618200322_Start")]
     partial class Start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -185,7 +185,7 @@ namespace e_Estoque.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<Guid>("IdCustomerAddress")
+                    b.Property<Guid>("IdCustomerAdress")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -201,7 +201,7 @@ namespace e_Estoque.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCustomerAddress");
+                    b.HasIndex("IdCustomerAdress");
 
                     b.ToTable("Customers");
                 });
@@ -485,12 +485,12 @@ namespace e_Estoque.Data.Migrations
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Customer", b =>
                 {
-                    b.HasOne("e_Estoque.Domain.Entities.CustomerAdress", "CustomerAddress")
+                    b.HasOne("e_Estoque.Domain.Entities.CustomerAdress", "CustomerAdress")
                         .WithMany()
-                        .HasForeignKey("IdCustomerAddress")
+                        .HasForeignKey("IdCustomerAdress")
                         .IsRequired();
 
-                    b.Navigation("CustomerAddress");
+                    b.Navigation("CustomerAdress");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Inventory", b =>
@@ -550,7 +550,7 @@ namespace e_Estoque.Data.Migrations
             modelBuilder.Entity("e_Estoque.Domain.Entities.Tax", b =>
                 {
                     b.HasOne("e_Estoque.Domain.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("Taxs")
                         .HasForeignKey("IdCategory")
                         .IsRequired();
 
@@ -560,6 +560,8 @@ namespace e_Estoque.Data.Migrations
             modelBuilder.Entity("e_Estoque.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Products");
+
+                    b.Navigation("Taxs");
                 });
 
             modelBuilder.Entity("e_Estoque.Domain.Entities.Sale", b =>

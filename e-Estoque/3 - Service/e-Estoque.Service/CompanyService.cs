@@ -20,13 +20,13 @@ namespace e_Estoque.Service
 
             if (!Validate(new CompanyValidation(), entity))
             {
-                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;
             }
 
             if (!Validate(new AdressValidation(), entity.CompanyAdress as Adress))
             {
-                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;
             }
 
@@ -54,7 +54,7 @@ namespace e_Estoque.Service
         {
             if (id != entity.Id)
             {
-                _notifier.Handle("Tax invalida", NotificationType.ERROR);
+                _notifier.Handle("Company invalida", NotificationType.ERROR);
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace e_Estoque.Service
 
             if (entityDB == null)
             {
-                _notifier.Handle("Tax não encontrada", NotificationType.ERROR);
+                _notifier.Handle("Company não encontrada", NotificationType.ERROR);
                 return;
             }
 
@@ -80,19 +80,19 @@ namespace e_Estoque.Service
         {
             if (id != entity.Id)
             {
-                _notifier.Handle("Tax invalida", NotificationType.ERROR);
+                _notifier.Handle("Company invalida", NotificationType.ERROR);
                 return;
             }
 
             if (!Validate(new CompanyValidation(), entity))
             {
-                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;
             }
 
             if (!Validate(new AdressValidation(), entity.CompanyAdress as Adress))
             {
-                _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
+                _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;
             }
 

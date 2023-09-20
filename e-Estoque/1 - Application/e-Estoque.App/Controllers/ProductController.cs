@@ -1,10 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using e_Estoque.CrossCutting.Notifications;
+using e_Estoque.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_Estoque.App.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
+        private readonly IProductService _productService;
+
+        public ProductController(
+            INotifier notifier, 
+            IMapper mapper, 
+            IProductService productService) : base(notifier, mapper)
+        {
+            _productService = productService;
+        }
+
         // GET: ProductController
         public ActionResult Index()
         {

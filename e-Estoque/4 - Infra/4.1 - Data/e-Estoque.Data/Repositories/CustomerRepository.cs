@@ -23,7 +23,7 @@ namespace e_Estoque.Data.Repositories
         {
             return await DbSet
               .AsNoTracking()
-              .Include("CustomerAddress")
+              .Include("CustomerAdress")
               .ToListAsync();
         }
 
@@ -31,7 +31,7 @@ namespace e_Estoque.Data.Repositories
         {
             return await DbSet
                .AsNoTracking()
-               .Include("CustomerAddress")
+               .Include("CustomerAdress")
                .Where(x => x.Id == id)
                .FirstOrDefaultAsync();
         }

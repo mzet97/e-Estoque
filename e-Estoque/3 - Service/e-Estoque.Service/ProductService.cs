@@ -1,52 +1,157 @@
 ﻿using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
+using e_Estoque.Domain.Entities.Validations;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Services;
+using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 
 namespace e_Estoque.Service
 {
     public class ProductService : BaseService, IProductService
     {
+        private readonly ILogger<ProductService> _logger;
+
         public ProductService(
-            INotifier notifier, 
-            IUnitOfWork unitOfWork) : base(notifier, unitOfWork)
+            INotifier notifier,
+            IUnitOfWork unitOfWork,
+            ILogger<ProductService> logger) : base(notifier, unitOfWork)
         {
+            _logger = logger;
         }
 
-        public Task Create(Product entity)
+        public async Task Create(Product entity)
         {
-            throw new NotImplementedException();
+            if (!Validate(new ProductValidation(), entity))
+            {
+                _notifier.Handle("Product não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            var category = await _unitOfWork
+                .RepositoryFactory
+                .CategoryRepository
+                .GetById(entity.IdCategory);
+
+            if (category == null)
+            {
+                _notifier.Handle("Categoria não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            var company = await _unitOfWork
+                .RepositoryFactory
+                .CompanyRepository
+                .GetById(entity.IdCompany);
+
+            if (company == null)
+            {
+                _notifier.Handle("Company não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            entity.Company = null;
+
+            await _unitOfWork
+                .RepositoryFactory
+                .ProductRepository
+                .Create(entity);
+
+            var result = await _unitOfWork
+                .RepositoryFactory
+                .ProductRepository
+                .Commit();
         }
 
-        public Task<IEnumerable<Product>> Find(Expression<Func<Product, bool>> predicate)
+        public async Task<IEnumerable<Product>> Find(Expression<Func<Product, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.ProductRepository.Find(predicate);
         }
 
-        public Task<IEnumerable<Product>> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.ProductRepository.GetAll();
         }
 
-        public Task<Product> GetById(Guid id)
+        public async Task<Product> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.ProductRepository.GetById(id);
         }
 
-        public Task Remove(Guid id, Product entity)
+        public async Task Remove(Guid id, Product entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Product invalida", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Product não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            _unitOfWork.RepositoryFactory.ProductRepository.Update(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.ProductRepository.Commit();
         }
 
-        public Task<IEnumerable<Product>> Search(Expression<Func<Product, bool>> predicate = null, Func<IQueryable<Product>, IOrderedQueryable<Product>> orderBy = null, int? pageSize = null, int? pageIndex = null)
+        public async Task<IEnumerable<Product>> Search(Expression<Func<Product, bool>> predicate = null, Func<IQueryable<Product>, IOrderedQueryable<Product>> orderBy = null, int? pageSize = null, int? pageIndex = null)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.ProductRepository.Search(predicate, orderBy, pageSize, pageIndex);
         }
 
-        public Task Update(Guid id, Product entity)
+        public async Task Update(Guid id, Product entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Product invalida", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new ProductValidation(), entity))
+            {
+                _notifier.Handle("Product não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Product não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            var category = await _unitOfWork.RepositoryFactory.CategoryRepository.GetById(entity.IdCategory);
+
+            if (category == null)
+            {
+                _notifier.Handle("Categoria não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            entity.Category = null;
+
+            var company = await _unitOfWork
+               .RepositoryFactory
+               .CompanyRepository
+               .GetById(entity.IdCompany);
+
+            if (company == null)
+            {
+                _notifier.Handle("Company não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            entity.Company = null;
+
+            _unitOfWork.RepositoryFactory.ProductRepository.Update(entity);
+
+            var result = await _unitOfWork.RepositoryFactory.ProductRepository.Commit();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace e_Estoque.Service
     public class CategoryService : BaseService, ICategoryService
     {
         private readonly ILogger<CategoryService> _logger;
+
         public CategoryService(
             INotifier notifier,
             IUnitOfWork unitOfWork,
@@ -72,7 +73,6 @@ namespace e_Estoque.Service
             _unitOfWork.RepositoryFactory.CategoryRepository.Update(entity);
 
             var result = await _unitOfWork.RepositoryFactory.CategoryRepository.Commit();
-
         }
 
         public async Task Remove(Guid id, Category entity)
@@ -97,14 +97,12 @@ namespace e_Estoque.Service
         }
 
         public async Task<IEnumerable<Category>> Search(
-            Expression<Func<Category, bool>> predicate = null, 
-            Func<IQueryable<Category>, IOrderedQueryable<Category>> orderBy = null, 
-            int? pageSize = null, 
+            Expression<Func<Category, bool>> predicate = null,
+            Func<IQueryable<Category>, IOrderedQueryable<Category>> orderBy = null,
+            int? pageSize = null,
             int? pageIndex = null)
         {
             return await _unitOfWork.RepositoryFactory.CategoryRepository.Search(predicate, orderBy, pageSize, pageIndex);
         }
-
-
     }
 }

@@ -16,8 +16,8 @@ namespace e_Estoque.App.Controllers
         private readonly ICustomerService _customerService;
 
         public CustomerController(
-            INotifier notifier, 
-            IMapper mapper, 
+            INotifier notifier,
+            IMapper mapper,
             ICustomerService customerService) : base(notifier, mapper)
         {
             _customerService = customerService;
@@ -151,22 +151,22 @@ namespace e_Estoque.App.Controllers
             {
                 var row = dataTable.NewRow();
                 row["Id"] = customer.Id;
-                row["Name"] = customer.Id;
+                row["Name"] = customer.Name;
                 row["DocId"] = customer.DocId;
                 row["Email"] = customer.Email;
                 row["Description"] = customer.Description;
                 row["PhoneNumber"] = customer.PhoneNumber;
 
-                row["Street"] = customer.CustomerAdress.Street;
-                row["Number"] = customer.CustomerAdress.Number;
-                row["Complement"] = customer.CustomerAdress.Complement;
-                row["Neighborhood"] = customer.CustomerAdress.Neighborhood;
-                row["District"] = customer.CustomerAdress.District;
-                row["City"] = customer.CustomerAdress.City;
-                row["County"] = customer.CustomerAdress.County;
-                row["ZipCode"] = customer.CustomerAdress.ZipCode;
-                row["Latitude"] = customer.CustomerAdress.Latitude;
-                row["Longitude"] = customer.CustomerAdress.Longitude;
+                row["Street"] = customer.CustomerAddress.Street;
+                row["Number"] = customer.CustomerAddress.Number;
+                row["Complement"] = customer.CustomerAddress.Complement;
+                row["Neighborhood"] = customer.CustomerAddress.Neighborhood;
+                row["District"] = customer.CustomerAddress.District;
+                row["City"] = customer.CustomerAddress.City;
+                row["County"] = customer.CustomerAddress.County;
+                row["ZipCode"] = customer.CustomerAddress.ZipCode;
+                row["Latitude"] = customer.CustomerAddress.Latitude;
+                row["Longitude"] = customer.CustomerAddress.Longitude;
 
                 row["CreatedAt"] = customer.CreatedAt;
                 row["UpdatedAt"] = customer.UpdatedAt;

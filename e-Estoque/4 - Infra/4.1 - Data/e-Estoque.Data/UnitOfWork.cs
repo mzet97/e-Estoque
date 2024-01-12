@@ -1,10 +1,5 @@
 ﻿using e_Estoque.Data.Context;
 using e_Estoque.Domain.Interfaces.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Data
 {
@@ -27,7 +22,6 @@ namespace e_Estoque.Data
             return await Task.FromResult(result > 0);
         }
 
-        
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)

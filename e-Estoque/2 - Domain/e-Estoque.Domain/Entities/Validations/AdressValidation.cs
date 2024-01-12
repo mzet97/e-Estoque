@@ -2,9 +2,9 @@
 
 namespace e_Estoque.Domain.Entities.Validations
 {
-    public class AdressValidation : AbstractValidator<Adress>
+    public class AddressValidation : AbstractValidator<Address>
     {
-        public AdressValidation()
+        public AddressValidation()
         {
             RuleFor(r => r.Street)
                .NotEmpty().WithMessage("The {PropertyName} needs to be provided")

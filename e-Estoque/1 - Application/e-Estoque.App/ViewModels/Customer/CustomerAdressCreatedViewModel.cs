@@ -1,8 +1,8 @@
-﻿using e_Estoque.App.ViewModels.Adress;
+﻿using e_Estoque.App.ViewModels.Address;
 
 namespace e_Estoque.App.ViewModels.Customer
 {
-    public class CustomerAdressCreatedViewModel : AdressCreatedViewModel
+    public class CustomerAddressCreatedViewModel : AddressCreatedViewModel
     {
     }
 }

@@ -18,13 +18,13 @@ try
         .AddEnvironmentVariables();
 
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    
+
     SerilogExtension.AddSerilogApi(builder.Configuration);
     builder.Host.UseSerilog(Log.Logger);
 
     builder.Services
         .AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseSqlite(connectionString));
 
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -34,7 +34,7 @@ try
 
     builder.Services.AddDbContext<EstoqueDbContext>(options =>
     {
-        options.UseSqlServer(connectionString);
+        options.UseSqlite(connectionString);
     });
 
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

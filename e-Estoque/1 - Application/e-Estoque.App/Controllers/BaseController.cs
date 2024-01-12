@@ -8,9 +8,9 @@ namespace e_Estoque.App.Controllers
     {
         protected INotifier _notifier;
         protected readonly IMapper _mapper;
-        
+
         public BaseController(
-            INotifier notifier, 
+            INotifier notifier,
             IMapper mapper)
         {
             _notifier = notifier;

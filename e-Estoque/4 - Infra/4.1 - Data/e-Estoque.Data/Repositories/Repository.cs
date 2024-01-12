@@ -15,7 +15,7 @@ namespace e_Estoque.Data.Repositories
         protected int Count;
 
         public Repository(
-            EstoqueDbContext db, 
+            EstoqueDbContext db,
             INotifier notifier)
         {
             Db = db;
@@ -64,9 +64,9 @@ namespace e_Estoque.Data.Repositories
         }
 
         public virtual async Task<IEnumerable<TEntity>> Search(
-            Expression<Func<TEntity, bool>> predicate = null, 
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
-            int? pageSize = null, 
+            Expression<Func<TEntity, bool>> predicate = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            int? pageSize = null,
             int? pageIndex = null)
         {
             var query = DbSet.AsQueryable();
@@ -92,13 +92,11 @@ namespace e_Estoque.Data.Repositories
                     {
                         query = query.OrderBy(x => x.Id).Skip(pageSize.Value * pageIndex.Value).Take(pageSize.Value);
                     }
-
                 }
                 else
                 {
                     query = query.OrderBy(x => x.Id).Skip(pageSize.Value);
                 }
-
             }
 
             if (orderBy != null)

@@ -2,54 +2,49 @@
 using e_Estoque.Domain.Entities;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Service
 {
-    public class CompanyAdressService : BaseService, ICompanyAdressService
+    public class CompanyAddressService : BaseService, ICompanyAddressService
     {
-        public CompanyAdressService(
-            INotifier notifier, 
+        public CompanyAddressService(
+            INotifier notifier,
             IUnitOfWork unitOfWork) : base(notifier, unitOfWork)
         {
         }
 
-        public Task Create(CompanyAdress entity)
+        public Task Create(CompanyAddress entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<CompanyAdress>> Find(Expression<Func<CompanyAdress, bool>> predicate)
+        public Task<IEnumerable<CompanyAddress>> Find(Expression<Func<CompanyAddress, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<CompanyAdress>> GetAll()
+        public Task<IEnumerable<CompanyAddress>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<CompanyAdress> GetById(Guid id)
+        public Task<CompanyAddress> GetById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task Remove(Guid id, CompanyAdress entity)
+        public Task Remove(Guid id, CompanyAddress entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<CompanyAdress>> Search(Expression<Func<CompanyAdress, bool>> predicate = null, Func<IQueryable<CompanyAdress>, IOrderedQueryable<CompanyAdress>> orderBy = null, int? pageSize = null, int? pageIndex = null)
+        public Task<IEnumerable<CompanyAddress>> Search(Expression<Func<CompanyAddress, bool>> predicate = null, Func<IQueryable<CompanyAddress>, IOrderedQueryable<CompanyAddress>> orderBy = null, int? pageSize = null, int? pageIndex = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task Update(Guid id, CompanyAdress entity)
+        public Task Update(Guid id, CompanyAddress entity)
         {
             throw new NotImplementedException();
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace e_Estoque.Domain.Entities
+﻿namespace e_Estoque.Domain.Entities
 {
     public abstract class Entity
     {
@@ -17,6 +11,5 @@ namespace e_Estoque.Domain.Entities
         {
             Id = Guid.NewGuid();
         }
-
     }
 }

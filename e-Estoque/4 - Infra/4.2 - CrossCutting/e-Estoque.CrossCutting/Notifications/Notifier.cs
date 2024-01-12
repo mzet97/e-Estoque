@@ -43,7 +43,7 @@
         {
             return _notifications.Where(x => x.Type == NotificationType.FATAL).ToList();
         }
-        
+
         public void Handle(Notification notification)
         {
             _notifications.Add(notification);

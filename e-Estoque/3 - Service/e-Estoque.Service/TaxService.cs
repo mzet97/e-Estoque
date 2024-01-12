@@ -22,7 +22,6 @@ namespace e_Estoque.Service
 
         public async Task Create(Tax entity)
         {
-
             if (!Validate(new TaxValidation(), entity))
             {
                 _notifier.Handle("Tax não está valida!", NotificationType.ERROR);
@@ -39,11 +38,9 @@ namespace e_Estoque.Service
 
             entity.Category = null;
 
-
             await _unitOfWork.RepositoryFactory.TaxRepository.Create(entity);
 
             var result = await _unitOfWork.RepositoryFactory.TaxRepository.Commit();
-
         }
 
         public async Task<IEnumerable<Tax>> Find(Expression<Func<Tax, bool>> predicate)

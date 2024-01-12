@@ -6,7 +6,6 @@ using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
 using e_Estoque.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Data;
@@ -138,7 +137,7 @@ namespace e_Estoque.App.Controllers
             {
                 var row = dataTable.NewRow();
                 row["Id"] = category.Id;
-                row["Name"] = category.Id;
+                row["Name"] = category.Name;
                 row["Description"] = category.Description;
                 row["ShortDescription"] = category.ShortDescription;
                 row["CreatedAt"] = category.CreatedAt;

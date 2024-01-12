@@ -1,7 +1,7 @@
-﻿using Serilog.Events;
-using Serilog.Filters;
-using Serilog;
+﻿using Serilog;
+using Serilog.Events;
 using Serilog.Exceptions;
+using Serilog.Filters;
 
 namespace e_Estoque.App.Configurations
 {

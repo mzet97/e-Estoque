@@ -12,11 +12,11 @@ namespace e_Estoque.Data.Mappings
 
             builder.Property(c => c.Quantity)
                 .IsRequired()
-                .HasColumnType("INT");
+                .HasColumnType("INTEGER");
 
             builder.Property(c => c.DateOrder)
                 .IsRequired()
-                .HasColumnType("datetime2");
+                .HasColumnType("TEXT");
 
             builder.Property(x => x.IdProduct)
                 .IsRequired();

@@ -12,15 +12,15 @@ namespace e_Estoque.Data.Mappings
 
             builder.Property(c => c.Name)
                 .IsRequired()
-                .HasColumnType("varchar(250)");
+                .HasColumnType("TEXT");
 
             builder.Property(c => c.ShortDescription)
                 .IsRequired()
-                .HasColumnType("varchar(250)");
+                .HasColumnType("TEXT");
 
             builder.Property(c => c.Description)
                 .IsRequired()
-                .HasColumnType("varchar(5000)");
+                .HasColumnType("TEXT");
         }
     }
 }

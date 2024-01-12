@@ -12,7 +12,7 @@ namespace e_Estoque.Domain.Entities.Validations
 
             RuleFor(r => r.Description)
               .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
-              .Length(3, 250).WithMessage("The {PropertyName} need to have between {MinLength} and {MaxLength} characters");
+              .Length(3, 5000).WithMessage("The {PropertyName} need to have between {MinLength} and {MaxLength} characters");
 
             RuleFor(r => r.ShortDescription)
               .NotEmpty().WithMessage("The {PropertyName} needs to be provided")

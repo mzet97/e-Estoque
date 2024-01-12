@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace e_Estoque.Domain.Entities
+﻿namespace e_Estoque.Domain.Entities
 {
     public class Tax : Entity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public decimal Percentage { get; set; }
 
         #region EFCRelations
 
         public Guid IdCategory { get; set; }
-        public virtual Category Category { get; set; }
+        public virtual Category Category { get; set; } = null!;
 
-        #endregion
+        #endregion EFCRelations
     }
 }

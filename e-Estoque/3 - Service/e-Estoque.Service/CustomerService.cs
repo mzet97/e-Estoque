@@ -10,7 +10,7 @@ namespace e_Estoque.Service
     public class CustomerService : BaseService, ICustomerService
     {
         public CustomerService(
-            INotifier notifier, 
+            INotifier notifier,
             IUnitOfWork unitOfWork) : base(notifier, unitOfWork)
         {
         }
@@ -23,7 +23,7 @@ namespace e_Estoque.Service
                 return;
             }
 
-            if (!Validate(new AdressValidation(), entity.CustomerAdress as Adress))
+            if (!Validate(new AddressValidation(), entity.CustomerAddress as Address))
             {
                 _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;
@@ -89,7 +89,7 @@ namespace e_Estoque.Service
                 return;
             }
 
-            if (!Validate(new AdressValidation(), entity.CustomerAdress as Adress))
+            if (!Validate(new AddressValidation(), entity.CustomerAddress as Address))
             {
                 _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;

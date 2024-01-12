@@ -1,10 +1,5 @@
 ﻿using e_Estoque.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Data.Mappings
 {
@@ -20,31 +15,31 @@ namespace e_Estoque.Data.Mappings
 
             builder.Property(c => c.Description)
                 .IsRequired()
-                .HasColumnType("varchar(5000)");
+                .HasColumnType("TEXT");
 
             builder.Property(c => c.ShortDescription)
                 .IsRequired()
-                .HasColumnType("varchar(250)");
+                .HasColumnType("TEXT");
 
             builder.Property(c => c.Price)
                 .IsRequired()
-                .HasColumnType("DECIMAL");
+                .HasColumnType("REAL");
 
             builder.Property(c => c.Weight)
                 .IsRequired()
-                .HasColumnType("DECIMAL");
+                .HasColumnType("REAL");
 
             builder.Property(c => c.Height)
                 .IsRequired()
-                .HasColumnType("DECIMAL");
+                .HasColumnType("REAL");
 
             builder.Property(c => c.Length)
                 .IsRequired()
-                .HasColumnType("DECIMAL");
+                .HasColumnType("REAL");
 
             builder.Property(c => c.Image)
                 .IsRequired()
-                .HasColumnType("varchar(5000)");
+                .HasColumnType("TEXT");
 
             builder.Property(x => x.IdCategory)
                 .IsRequired();

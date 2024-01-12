@@ -11,7 +11,6 @@ namespace e_Estoque.Data
         private readonly EstoqueDbContext _dbContext;
         private readonly INotifier _notifier;
 
-
         public RepositoryFactory(
             EstoqueDbContext dbContext,
             INotifier notifier
@@ -21,51 +20,54 @@ namespace e_Estoque.Data
             _notifier = notifier;
         }
 
-
         private ICategoryRepository _categoryRepository;
+
         public ICategoryRepository CategoryRepository
         { get => _categoryRepository ?? (_categoryRepository = new CategoryRepository(_dbContext, _notifier)); }
 
-        private ICompanyAdressRepository _companyAdressRepository;
-        public ICompanyAdressRepository CompanyAdressRepository
-        { get => _companyAdressRepository ?? (_companyAdressRepository = new CompanyAdressRepository(_dbContext, _notifier)); }
+        private ICompanyAddressRepository _companyAddressRepository;
+
+        public ICompanyAddressRepository CompanyAddressRepository
+        { get => _companyAddressRepository ?? (_companyAddressRepository = new CompanyAddressRepository(_dbContext, _notifier)); }
 
         private ICompanyRepository _companyRepository;
+
         public ICompanyRepository CompanyRepository
         { get => _companyRepository ?? (_companyRepository = new CompanyRepository(_dbContext, _notifier)); }
 
         private ICustomerRepository _customerRepository;
+
         public ICustomerRepository CustomerRepository
         { get => _customerRepository ?? (_customerRepository = new CustomerRepository(_dbContext, _notifier)); }
 
+        private ICustomerAddressRepository _customerAddressRepository;
 
-        private ICustomerAdressRepository _customerAdressRepository;
-        public ICustomerAdressRepository CustomerAdressRepository
-        { get => _customerAdressRepository ?? (_customerAdressRepository = new CustomerAdressRepository(_dbContext, _notifier)); }
+        public ICustomerAddressRepository CustomerAddressRepository
+        { get => _customerAddressRepository ?? (_customerAddressRepository = new CustomerAddressRepository(_dbContext, _notifier)); }
 
         private IInventoryRepository _inventoryRepository;
+
         public IInventoryRepository InventoryRepository
         { get => _inventoryRepository ?? (_inventoryRepository = new InventoryRepository(_dbContext, _notifier)); }
 
-
         private IProductRepository _productRepository;
+
         public IProductRepository ProductRepository
         { get => _productRepository ?? (_productRepository = new ProductRepository(_dbContext, _notifier)); }
 
-
         private ISaleProductRepository _saleProductRepository;
+
         public ISaleProductRepository SaleProductRepository
         { get => _saleProductRepository ?? (_saleProductRepository = new SaleProductRepository(_dbContext, _notifier)); }
 
-
         private ISaleRepository _saleRepository;
+
         public ISaleRepository SaleRepository
         { get => _saleRepository ?? (_saleRepository = new SaleRepository(_dbContext, _notifier)); }
 
-
         private ITaxRepository _taxRepository;
+
         public ITaxRepository TaxRepository
         { get => _taxRepository ?? (_taxRepository = new TaxRepository(_dbContext, _notifier)); }
-
     }
 }

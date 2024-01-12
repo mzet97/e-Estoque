@@ -12,7 +12,7 @@ namespace e_Estoque.Service
         protected readonly IUnitOfWork _unitOfWork;
 
         protected BaseService(
-            INotifier notifier, 
+            INotifier notifier,
             IUnitOfWork unitOfWork)
         {
             _notifier = notifier;

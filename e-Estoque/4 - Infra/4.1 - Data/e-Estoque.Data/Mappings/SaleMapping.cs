@@ -24,31 +24,31 @@ namespace e_Estoque.Data.Mappings
 
             builder.Property(c => c.TotalPrice)
                 .IsRequired()
-                .HasColumnType("DECIMAL");
+                .HasColumnType("REAL");
 
             builder.Property(c => c.TotalTax)
                 .IsRequired()
-                .HasColumnType("DECIMAL");
+                .HasColumnType("REAL");
 
             builder.Property(c => c.DeliveryDate)
-               .HasColumnType("datetime2");
+               .HasColumnType("TEXT");
 
             builder.Property(c => c.SaleDate)
                .IsRequired()
-               .HasColumnType("datetime2");
+               .HasColumnType("TEXT");
 
             builder.Property(c => c.PaymentDate)
-               .HasColumnType("datetime2");
+               .HasColumnType("TEXT");
 
             builder.Property(c => c.CreatedAt)
                .IsRequired()
-               .HasColumnType("datetime2");
+               .HasColumnType("TEXT");
 
             builder.Property(c => c.UpdatedAt)
-               .HasColumnType("datetime2");
+               .HasColumnType("TEXT");
 
             builder.Property(c => c.DeletedAt)
-               .HasColumnType("datetime2");
+               .HasColumnType("TEXT");
 
             builder.Property(x => x.IdCustomer)
                 .IsRequired();

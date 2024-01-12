@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace e_Estoque.CrossCutting.Notifications
+﻿namespace e_Estoque.CrossCutting.Notifications
 {
     public class Notification
     {
@@ -16,6 +10,5 @@ namespace e_Estoque.CrossCutting.Notifications
             this.message = message;
             Type = type;
         }
-
     }
 }

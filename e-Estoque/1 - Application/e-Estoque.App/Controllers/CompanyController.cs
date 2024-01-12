@@ -5,7 +5,6 @@ using e_Estoque.App.ViewModels.Company;
 using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
 using e_Estoque.Domain.Interfaces.Services;
-using e_Estoque.Service;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Data;
@@ -152,22 +151,22 @@ namespace e_Estoque.App.Controllers
             {
                 var row = dataTable.NewRow();
                 row["Id"] = company.Id;
-                row["Name"] = company.Id;
+                row["Name"] = company.Name;
                 row["DocId"] = company.DocId;
                 row["Email"] = company.Email;
                 row["Description"] = company.Description;
                 row["PhoneNumber"] = company.PhoneNumber;
 
-                row["Street"] = company.CompanyAdress.Street;
-                row["Number"] = company.CompanyAdress.Number;
-                row["Complement"] = company.CompanyAdress.Complement;
-                row["Neighborhood"] = company.CompanyAdress.Neighborhood;
-                row["District"] = company.CompanyAdress.District;
-                row["City"] = company.CompanyAdress.City;
-                row["County"] = company.CompanyAdress.County;
-                row["ZipCode"] = company.CompanyAdress.ZipCode;
-                row["Latitude"] = company.CompanyAdress.Latitude;
-                row["Longitude"] = company.CompanyAdress.Longitude;
+                row["Street"] = company.CompanyAddress.Street;
+                row["Number"] = company.CompanyAddress.Number;
+                row["Complement"] = company.CompanyAddress.Complement;
+                row["Neighborhood"] = company.CompanyAddress.Neighborhood;
+                row["District"] = company.CompanyAddress.District;
+                row["City"] = company.CompanyAddress.City;
+                row["County"] = company.CompanyAddress.County;
+                row["ZipCode"] = company.CompanyAddress.ZipCode;
+                row["Latitude"] = company.CompanyAddress.Latitude;
+                row["Longitude"] = company.CompanyAddress.Longitude;
 
                 row["CreatedAt"] = company.CreatedAt;
                 row["UpdatedAt"] = company.UpdatedAt;

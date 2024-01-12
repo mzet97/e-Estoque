@@ -8,7 +8,7 @@ namespace e_Estoque.App.Controllers
         {
             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
 
-            if(currentUser != null)
+            if (currentUser != null)
             {
                 var identity = currentUser.Identities.FirstOrDefault();
 

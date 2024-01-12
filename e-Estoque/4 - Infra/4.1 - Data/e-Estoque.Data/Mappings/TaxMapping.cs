@@ -12,15 +12,15 @@ namespace e_Estoque.Data.Mappings
 
             builder.Property(c => c.Name)
                 .IsRequired()
-                .HasColumnType("varchar(250)");
+                .HasColumnType("TEXT");
 
             builder.Property(c => c.Description)
                 .IsRequired()
-                .HasColumnType("varchar(5000)");
+                .HasColumnType("TEXT");
 
             builder.Property(c => c.Percentage)
                 .IsRequired()
-                .HasColumnType("DECIMAL");
+                .HasColumnType("REAL");
 
             builder.Property(x => x.IdCategory)
                 .IsRequired();
@@ -29,7 +29,6 @@ namespace e_Estoque.Data.Mappings
                 .HasOne(x => x.Category)
                 .WithMany(x => x.Taxs)
                 .HasForeignKey(x => x.IdCategory);
-
         }
     }
 }

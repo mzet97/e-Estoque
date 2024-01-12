@@ -3,35 +3,30 @@ using e_Estoque.Data.Context;
 using e_Estoque.Domain.Entities;
 using e_Estoque.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Data.Repositories
 {
     public class CompanyRepository : Repository<Company>, ICompanyRepository
     {
         public CompanyRepository(
-            EstoqueDbContext db, 
+            EstoqueDbContext db,
             INotifier notifier) : base(db, notifier)
         {
         }
 
         public override async Task<IEnumerable<Company>> GetAll()
         {
-              return await DbSet
-                .AsNoTracking()
-                .Include("CompanyAdress")
-                .ToListAsync();
+            return await DbSet
+              .AsNoTracking()
+              .Include("CompanyAddress")
+              .ToListAsync();
         }
 
         public override async Task<Company> GetById(Guid id)
         {
             return await DbSet
                .AsNoTracking()
-               .Include("CompanyAdress")
+               .Include("CompanyAddress")
                .Where(x => x.Id == id)
                .FirstOrDefaultAsync();
         }

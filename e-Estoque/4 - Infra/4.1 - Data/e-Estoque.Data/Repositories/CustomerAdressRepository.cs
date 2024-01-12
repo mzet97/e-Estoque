@@ -5,10 +5,10 @@ using e_Estoque.Domain.Interfaces.Repositories;
 
 namespace e_Estoque.Data.Repositories
 {
-    public class CustomerAdressRepository : Repository<CustomerAdress>, ICustomerAdressRepository
+    public class CustomerAddressRepository : Repository<CustomerAddress>, ICustomerAddressRepository
     {
-        public CustomerAdressRepository(
-            EstoqueDbContext db, 
+        public CustomerAddressRepository(
+            EstoqueDbContext db,
             INotifier notifier) : base(db, notifier)
         {
         }

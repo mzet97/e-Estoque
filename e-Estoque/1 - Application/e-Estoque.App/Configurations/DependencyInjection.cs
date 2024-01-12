@@ -23,34 +23,36 @@ namespace e_Estoque.App.Configurations
             services.AddScoped<IEmailService, EmailService>();
 
             #region Repository
+
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<ICompanyAdressRepository, CompanyAdressRepository>();
+            services.AddScoped<ICompanyAddressRepository, CompanyAddressRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<ICustomerAdressRepository, CustomerAdressRepository>();
+            services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
-            services.AddScoped<ICustomerAdressRepository, CustomerAdressRepository>();
+            services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
             services.AddScoped<ISaleProductRepository, SaleProductRepository>();
             services.AddScoped<ISaleRepository, SaleRepository>();
             services.AddScoped<ITaxRepository, TaxRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
-
-            #endregion
+            #endregion Repository
 
             #region Service
+
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ICompanyAdressService, CompanyAdressService>();
+            services.AddScoped<ICompanyAddressService, CompanyAddressService>();
             services.AddScoped<ICompanyService, CompanyService>();
-            services.AddScoped<ICustomerAdressService, CustomerAdressService>();
+            services.AddScoped<ICustomerAddressService, CustomerAddressService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IInventoryService, InventoryService>();
-            services.AddScoped<ICustomerAdressService, CustomerAdressService>();
+            services.AddScoped<ICustomerAddressService, CustomerAddressService>();
             services.AddScoped<ISaleProductService, SaleProductService>();
             services.AddScoped<ISaleService, SaleService>();
             services.AddScoped<ITaxService, TaxService>();
+            services.AddScoped<IProductService, ProductService>();
 
-
-            #endregion
+            #endregion Service
 
             return services;
         }

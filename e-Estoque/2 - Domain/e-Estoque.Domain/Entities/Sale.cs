@@ -16,11 +16,12 @@ namespace e_Estoque.Domain.Entities
         public DateTime? PaymentDate { get; set; }
 
         #region EFCRelations
+
         public Guid IdCustomer { get; set; }
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } = null!;
 
-        public virtual IEnumerable<SaleProduct> SaleProduct { get; set; }
+        public virtual IEnumerable<SaleProduct> SaleProduct { get; set; } = null!;
 
-        #endregion
+        #endregion EFCRelations
     }
 }

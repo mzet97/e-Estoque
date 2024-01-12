@@ -3,18 +3,13 @@ using e_Estoque.Data.Context;
 using e_Estoque.Domain.Entities;
 using e_Estoque.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Estoque.Data.Repositories
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
         public CustomerRepository(
-            EstoqueDbContext db, 
+            EstoqueDbContext db,
             INotifier notifier) : base(db, notifier)
         {
         }
@@ -23,7 +18,7 @@ namespace e_Estoque.Data.Repositories
         {
             return await DbSet
               .AsNoTracking()
-              .Include("CustomerAdress")
+              .Include("CustomerAddress")
               .ToListAsync();
         }
 
@@ -31,7 +26,7 @@ namespace e_Estoque.Data.Repositories
         {
             return await DbSet
                .AsNoTracking()
-               .Include("CustomerAdress")
+               .Include("CustomerAddress")
                .Where(x => x.Id == id)
                .FirstOrDefaultAsync();
         }

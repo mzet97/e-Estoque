@@ -7,7 +7,6 @@ using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
 using e_Estoque.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Serilog;
@@ -43,10 +42,10 @@ namespace e_Estoque.App.Controllers
         {
             ViewBag.Categories = _mapper.Map<IEnumerable<CategoryViewModel>>(await _categoryService.GetAll())
                 .Select(c => new SelectListItem()
-                    { 
-                        Text = c.Name, 
-                        Value = c.Id.ToString() 
-                    })
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                })
                 .ToList();
 
             return View(new TaxCreatedViewModel());
@@ -64,7 +63,7 @@ namespace e_Estoque.App.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error(ex.Message, ex);
 

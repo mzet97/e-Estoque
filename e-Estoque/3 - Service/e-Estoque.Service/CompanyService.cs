@@ -10,21 +10,20 @@ namespace e_Estoque.Service
     public class CompanyService : BaseService, ICompanyService
     {
         public CompanyService(
-            INotifier notifier, 
+            INotifier notifier,
             IUnitOfWork unitOfWork) : base(notifier, unitOfWork)
         {
         }
 
         public async Task Create(Company entity)
         {
-
             if (!Validate(new CompanyValidation(), entity))
             {
                 _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;
             }
 
-            if (!Validate(new AdressValidation(), entity.CompanyAdress as Adress))
+            if (!Validate(new AddressValidation(), entity.CompanyAddress as Address))
             {
                 _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;
@@ -90,7 +89,7 @@ namespace e_Estoque.Service
                 return;
             }
 
-            if (!Validate(new AdressValidation(), entity.CompanyAdress as Adress))
+            if (!Validate(new AddressValidation(), entity.CompanyAddress as Address))
             {
                 _notifier.Handle("Company não está valida!", NotificationType.ERROR);
                 return;

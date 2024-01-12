@@ -12,7 +12,6 @@ namespace e_Estoque.App.Configurations
             {
                 context.HttpContext.Request.Path = context.HttpContext.Request.Path.Value.Replace("%2F", "/");
             }
-
         }
     }
 }

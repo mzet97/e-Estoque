@@ -25,7 +25,6 @@ namespace e_Estoque.Data.Mappings
                 .HasOne(x => x.Sale)
                 .WithMany(x => x.SaleProduct)
                 .HasForeignKey(x => x.IdSale);
-
         }
     }
 }

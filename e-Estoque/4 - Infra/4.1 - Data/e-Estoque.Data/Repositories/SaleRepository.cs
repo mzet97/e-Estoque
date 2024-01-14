@@ -21,6 +21,7 @@ namespace e_Estoque.Data.Repositories
                 .AsNoTracking()
                 .Include("Customer")
                 .Include("SaleProduct")
+                .Include("SaleProduct.Product")
                 .Where(predicate)
                 .ToListAsync();
         }
@@ -30,6 +31,7 @@ namespace e_Estoque.Data.Repositories
             return await DbSet
                  .Include("Customer")
                  .Include("SaleProduct")
+                 .Include("SaleProduct.Product")
                  .AsNoTracking()
                  .ToListAsync();
         }
@@ -39,6 +41,7 @@ namespace e_Estoque.Data.Repositories
             return await DbSet
                 .Include("Customer")
                 .Include("SaleProduct")
+                .Include("SaleProduct.Product")
                 .AsNoTracking()
                 .Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
@@ -60,7 +63,7 @@ namespace e_Estoque.Data.Repositories
 
             if (predicate != null)
             {
-                query = query.Include("Customer").Include("SaleProduct").Where(predicate);
+                query = query.Include("Customer").Include("SaleProduct").Include("SaleProduct.Product").Where(predicate);
             }
 
             if (pageSize != null && pageSize.HasValue && pageSize > 0)

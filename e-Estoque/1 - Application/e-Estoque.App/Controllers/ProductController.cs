@@ -175,7 +175,9 @@ namespace e_Estoque.App.Controllers
             dataTable.Columns.Add("Height");
             dataTable.Columns.Add("Length");
             dataTable.Columns.Add("IdCategory");
+            dataTable.Columns.Add("Category Name");
             dataTable.Columns.Add("IdCompany");
+            dataTable.Columns.Add("Company Name");
             dataTable.Columns.Add("CreatedAt");
             dataTable.Columns.Add("UpdatedAt");
             dataTable.Columns.Add("DeletedAt");
@@ -193,7 +195,9 @@ namespace e_Estoque.App.Controllers
                 row["Height"] = entity.Height;
                 row["Length"] = entity.Length;
                 row["IdCategory"] = entity.IdCategory;
+                row["Category Name"] = entity.Category.Name;
                 row["IdCompany"] = entity.IdCompany;
+                row["Company Name"] = entity.Company.Name;
                 row["CreatedAt"] = entity.CreatedAt;
                 row["UpdatedAt"] = entity.UpdatedAt;
                 row["DeletedAt"] = entity.DeletedAt;

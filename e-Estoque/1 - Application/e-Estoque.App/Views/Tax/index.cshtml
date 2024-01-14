@@ -25,6 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.IdCategory)
             </th>
+             <th>
+                Category Name
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
             </th>
@@ -56,7 +59,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IdCategory)
                 </td>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)
                 </td>

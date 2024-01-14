@@ -1,0 +1,122 @@
+﻿@using e_Estoque.Domain.Entities.Enums
+@model e_Estoque.App.ViewModels.Sale.SaleViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit a Sale</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryDate" class="control-label"></label>
+                <input asp-for="DeliveryDate" class="form-control" />
+                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label"></label>
+                <input disabled asp-for="TotalPrice" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalTax" class="control-label"></label>
+                <input disabled asp-for="TotalTax" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SaleDate" class="control-label"></label>
+                <input asp-for="SaleDate" class="form-control" />
+                <span asp-validation-for="SaleDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentDate" class="control-label"></label>
+                <input asp-for="PaymentDate" class="form-control" />
+                <span asp-validation-for="PaymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>SaleType Current</label>
+                <input disabled asp-for="SaleType" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SaleType" class="control-label"></label>
+                <select asp-for="SaleType" class="form-select" asp-items="Html.GetEnumSelectList<SaleType>()"></select>
+            </div>
+            <div class="form-group">
+                <label>PaymentType Current</label>
+                <input disabled asp-for="PaymentType" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentType" class="control-label"></label>
+                <select asp-for="PaymentType" class="form-select" asp-items="Html.GetEnumSelectList<PaymentType>()"></select>
+            </div>
+            <div hidden class="form-group">
+                <label>Customer Current</label>
+                <label asp-for="Customer.Name" class="control-label"></label>
+                <input disabled asp-for="Customer.Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCustomer" class="control-label"></label>
+                <select class="form-select" aria-label="select one"
+                        asp-for="IdCustomer"
+                        asp-items="@ViewBag.Customers"></select>
+                <span asp-validation-for="IdCustomer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Customer Current</label>
+                <br />
+                @foreach (var item in Model.Products)
+                {
+                    @Html.DisplayFor(model => item.Name)
+
+                    <br />
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Products" class="control-label"></label>
+                <select class="form-select" aria-label="select one"
+                        asp-for="Products"
+                        asp-items="@ViewBag.Products" multiple></select>
+
+                <span asp-validation-for="Products" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="Id" class="control-label"></label>
+                <input hidden disabled asp-for="Id" class="form-control" />
+                <span hidden asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="CreatedAt" class="control-label"></label>
+                <input hidden disabled asp-for="CreatedAt" class="form-control" />
+                <span hidden asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="UpdatedAt" class="control-label"></label>
+                <input hidden disabled asp-for="UpdatedAt" class="form-control" />
+                <span hidden asp-validation-for="UpdatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="DeletedAt" class="control-label"></label>
+                <input hidden disabled asp-for="DeletedAt" class="form-control" />
+                <span hidden asp-validation-for="DeletedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

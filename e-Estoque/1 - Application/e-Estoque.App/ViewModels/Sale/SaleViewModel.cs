@@ -21,5 +21,44 @@ namespace e_Estoque.App.ViewModels.Sale
         public CustomerViewModel Customer { get; set; } = null!;
 
         public IEnumerable<ProductViewModel> Products { get; set; } = null!;
+
+        public SaleViewModel()
+        {
+            
+        }
+
+        public SaleViewModel(
+            Guid id,
+            int quantity,
+            decimal totalPrice,
+            decimal totalTax,
+            SaleType saleType,
+            PaymentType paymentType,
+            DateTime? deliveryDate,
+            DateTime saleDate,
+            DateTime? paymentDate,
+            Guid idCustomer,
+            DateTime createdAt,
+            DateTime? updatedAt,
+            DateTime? deletedAt,
+            CustomerViewModel customerViewModel,
+            List<ProductViewModel> productViewModels)
+        {
+            Id = id;
+            Quantity = quantity;
+            TotalPrice = totalPrice;
+            TotalTax = totalTax;
+            SaleType = saleType;
+            PaymentType = paymentType;
+            DeliveryDate = deliveryDate;
+            SaleDate = saleDate;
+            PaymentDate = paymentDate;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            DeletedAt = deletedAt;
+            IdCustomer = idCustomer;
+            Customer = customerViewModel;
+            Products = productViewModels;
+        }
     }
 }

@@ -10,14 +10,6 @@ namespace e_Estoque.Domain.Entities.Validations
                .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
                .GreaterThan(0).WithMessage("The {PropertyName} needs to be greater than {ComparisonValue}");
 
-            RuleFor(r => r.TotalPrice)
-               .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
-               .GreaterThan(0).WithMessage("The {PropertyName} needs to be greater than {ComparisonValue}");
-
-            RuleFor(r => r.TotalTax)
-               .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
-               .GreaterThan(0).WithMessage("The {PropertyName} needs to be greater than {ComparisonValue}");
-
             RuleFor(r => r.SaleType)
                .NotEmpty().WithMessage("The {PropertyName} needs to be provided");
 

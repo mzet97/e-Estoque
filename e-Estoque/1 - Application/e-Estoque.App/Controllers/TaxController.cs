@@ -153,6 +153,7 @@ namespace e_Estoque.App.Controllers
             dataTable.Columns.Add("Description");
             dataTable.Columns.Add("Percentage");
             dataTable.Columns.Add("IdCategory");
+            dataTable.Columns.Add("Category Name");
             dataTable.Columns.Add("CreatedAt");
             dataTable.Columns.Add("UpdatedAt");
             dataTable.Columns.Add("DeletedAt");
@@ -165,6 +166,7 @@ namespace e_Estoque.App.Controllers
                 row["Description"] = tax.Description;
                 row["Percentage"] = tax.Percentage;
                 row["IdCategory"] = tax.IdCategory;
+                row["Category Name"] = tax.Category.Name;
                 row["CreatedAt"] = tax.CreatedAt;
                 row["UpdatedAt"] = tax.UpdatedAt;
                 row["DeletedAt"] = tax.DeletedAt;

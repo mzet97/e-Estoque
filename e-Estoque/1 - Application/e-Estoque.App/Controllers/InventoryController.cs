@@ -157,27 +157,29 @@ namespace e_Estoque.App.Controllers
             return wb.Deliver($"inventory-{DateTime.Now.ToString()}.xlsx");
         }
 
-        public DataTable GetDataTable(List<Inventory> taxs)
+        public DataTable GetDataTable(List<Inventory> inventory)
         {
-            DataTable dataTable = new DataTable("Categories");
+            DataTable dataTable = new DataTable("Inventory");
             dataTable.Columns.Add("Id");
             dataTable.Columns.Add("Quantity");
             dataTable.Columns.Add("DateOrder");
             dataTable.Columns.Add("IdProduct");
+            dataTable.Columns.Add("Product Name");
             dataTable.Columns.Add("CreatedAt");
             dataTable.Columns.Add("UpdatedAt");
             dataTable.Columns.Add("DeletedAt");
 
-            foreach (var tax in taxs)
+            foreach (var item in inventory)
             {
                 var row = dataTable.NewRow();
-                row["Id"] = tax.Id;
-                row["Quantity"] = tax.Quantity;
-                row["DateOrder"] = tax.DateOrder;
-                row["IdProduct"] = tax.IdProduct;
-                row["CreatedAt"] = tax.CreatedAt;
-                row["UpdatedAt"] = tax.UpdatedAt;
-                row["DeletedAt"] = tax.DeletedAt;
+                row["Id"] = item.Id;
+                row["Quantity"] = item.Quantity;
+                row["DateOrder"] = item.DateOrder;
+                row["IdProduct"] = item.IdProduct;
+                row["Product Name"] = item.Product.Name;
+                row["CreatedAt"] = item.CreatedAt;
+                row["UpdatedAt"] = item.UpdatedAt;
+                row["DeletedAt"] = item.DeletedAt;
 
                 dataTable.Rows.Add(row);
             }

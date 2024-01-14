@@ -40,6 +40,39 @@ namespace e_Estoque.Service
 
             entity.Customer = null;
 
+            foreach(var product in entity.SaleProduct)
+            {
+                var productDB = await _unitOfWork
+                    .RepositoryFactory
+                    .ProductRepository
+                    .GetById(product.IdProduct);
+
+                if (productDB == null)
+                {
+                    _notifier.Handle("Product não encontrada", NotificationType.ERROR);
+                    return;
+                }
+
+                var category = await _unitOfWork
+                    .RepositoryFactory
+                    .CategoryRepository
+                    .GetById(productDB.IdCategory);
+
+                foreach(var tax in category.Taxs)
+                {
+                   entity.TotalTax += tax.Percentage;
+                }
+
+                entity.TotalPrice += productDB.Price;
+            }
+
+            entity.TotalPrice += entity.TotalPrice * entity.TotalTax / 100;
+
+            if(entity.Quantity > 1)
+            {
+                entity.TotalPrice *= entity.Quantity;
+            }
+
             await _unitOfWork
                 .RepositoryFactory
                 .SaleRepository
@@ -50,7 +83,15 @@ namespace e_Estoque.Service
                 .SaleRepository
                 .Commit();
 
-            await _saleProductService.Create(entity.SaleProduct);
+            var listSaleProduct = new List<SaleProduct>();
+
+            foreach(var saleProduct in entity.SaleProduct)
+            {
+                saleProduct.IdSale = entity.Id;
+                listSaleProduct.Add(saleProduct);
+            }
+
+            await _saleProductService.Create(listSaleProduct);
         }
 
         public async Task<IEnumerable<Sale>> Find(Expression<Func<Sale, bool>> predicate)
@@ -89,7 +130,11 @@ namespace e_Estoque.Service
             await _unitOfWork.RepositoryFactory.SaleRepository.Commit();
         }
 
-        public async Task<IEnumerable<Sale>> Search(Expression<Func<Sale, bool>> predicate = null, Func<IQueryable<Sale>, IOrderedQueryable<Sale>> orderBy = null, int? pageSize = null, int? pageIndex = null)
+        public async Task<IEnumerable<Sale>> Search(
+            Expression<Func<Sale, bool>> predicate = null,
+            Func<IQueryable<Sale>, IOrderedQueryable<Sale>> orderBy = null,
+            int? pageSize = null,
+            int? pageIndex = null)
         {
             return await _unitOfWork.RepositoryFactory.SaleRepository.Search(predicate, orderBy, pageSize, pageIndex);
         }
@@ -126,10 +171,52 @@ namespace e_Estoque.Service
 
             entity.Customer = null;
 
+            foreach (var product in entity.SaleProduct)
+            {
+                var productDB = await _unitOfWork
+                    .RepositoryFactory
+                    .ProductRepository
+                    .GetById(product.IdProduct);
+
+                if (productDB == null)
+                {
+                    _notifier.Handle("Product não encontrada", NotificationType.ERROR);
+                    return;
+                }
+
+                var category = await _unitOfWork
+                    .RepositoryFactory
+                    .CategoryRepository
+                    .GetById(productDB.IdCategory);
+
+                foreach (var tax in category.Taxs)
+                {
+                    entity.TotalTax += tax.Percentage;
+                }
+
+                entity.TotalPrice += productDB.Price;
+            }
+
+            entity.TotalPrice += entity.TotalPrice * entity.TotalTax / 100;
+
+            if (entity.Quantity > 1)
+            {
+                entity.TotalPrice *= entity.Quantity;
+            }
+
             _unitOfWork.RepositoryFactory.SaleRepository.Update(entity);
 
             await _unitOfWork.RepositoryFactory.SaleRepository.Commit();
-            await _saleProductService.Update(entity.SaleProduct);
+
+            var listSaleProduct = new List<SaleProduct>();
+
+            foreach (var saleProduct in entity.SaleProduct)
+            {
+                saleProduct.IdSale = entity.Id;
+                listSaleProduct.Add(saleProduct);
+            }
+
+            await _saleProductService.Update(listSaleProduct);
         }
     }
 }

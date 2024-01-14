@@ -5,9 +5,6 @@ namespace e_Estoque.App.ViewModels.Sale
     public class SaleCreatedViewModel
     {
         public int Quantity { get; set; }
-        public decimal TotalPrice { get; set; }
-        public decimal TotalTax { get; set; }
-
         public SaleType SaleType { get; set; }
         public PaymentType PaymentType { get; set; }
 

@@ -38,7 +38,13 @@
                 @Html.DisplayNameFor(model => model.IdCategory)
             </th>
             <th>
+                Category Name
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IdCompany)
+            </th>
+            <th>
+                Company Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -84,7 +90,13 @@
                     @Html.DisplayFor(modelItem => item.IdCategory)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.IdCompany)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)

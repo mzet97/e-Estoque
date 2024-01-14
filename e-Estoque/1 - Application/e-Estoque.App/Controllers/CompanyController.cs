@@ -122,9 +122,9 @@ namespace e_Estoque.App.Controllers
             return wb.Deliver($"companies-{DateTime.Now.ToString()}.xlsx");
         }
 
-        public DataTable GetDataTable(List<Company> Companies)
+        public DataTable GetDataTable(List<Company> companies)
         {
-            DataTable dataTable = new DataTable("Categories");
+            DataTable dataTable = new DataTable("Companies");
             dataTable.Columns.Add("Id");
             dataTable.Columns.Add("Name");
             dataTable.Columns.Add("DocId");
@@ -147,7 +147,7 @@ namespace e_Estoque.App.Controllers
             dataTable.Columns.Add("UpdatedAt");
             dataTable.Columns.Add("DeletedAt");
 
-            foreach (var company in Companies)
+            foreach (var company in companies)
             {
                 var row = dataTable.NewRow();
                 row["Id"] = company.Id;

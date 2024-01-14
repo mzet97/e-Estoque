@@ -10,14 +10,12 @@ namespace e_Estoque.Service
 {
     public class TaxService : BaseService, ITaxService
     {
-        private readonly ILogger<TaxService> _logger;
 
         public TaxService(
             INotifier notifier,
             IUnitOfWork unitOfWork,
             ILogger<TaxService> logger) : base(notifier, unitOfWork)
         {
-            _logger = logger;
         }
 
         public async Task Create(Tax entity)
@@ -40,7 +38,7 @@ namespace e_Estoque.Service
 
             await _unitOfWork.RepositoryFactory.TaxRepository.Create(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.TaxRepository.Commit();
+            await _unitOfWork.RepositoryFactory.TaxRepository.Commit();
         }
 
         public async Task<IEnumerable<Tax>> Find(Expression<Func<Tax, bool>> predicate)
@@ -76,7 +74,7 @@ namespace e_Estoque.Service
 
             _unitOfWork.RepositoryFactory.TaxRepository.Update(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.TaxRepository.Commit();
+            await _unitOfWork.RepositoryFactory.TaxRepository.Commit();
         }
 
         public async Task<IEnumerable<Tax>> Search(Expression<Func<Tax, bool>> predicate = null, Func<IQueryable<Tax>, IOrderedQueryable<Tax>> orderBy = null, int? pageSize = null, int? pageIndex = null)
@@ -118,7 +116,7 @@ namespace e_Estoque.Service
 
             _unitOfWork.RepositoryFactory.TaxRepository.Update(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.TaxRepository.Commit();
+            await _unitOfWork.RepositoryFactory.TaxRepository.Commit();
         }
     }
 }

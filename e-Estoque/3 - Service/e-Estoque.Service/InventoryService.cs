@@ -1,5 +1,6 @@
 ﻿using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
+using e_Estoque.Domain.Entities.Validations;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Services;
 using System.Linq.Expressions;
@@ -14,39 +15,115 @@ namespace e_Estoque.Service
         {
         }
 
-        public Task Create(Inventory entity)
+        public async Task Create(Inventory entity)
         {
-            throw new NotImplementedException();
+            if (!Validate(new InventoryValidation(), entity))
+            {
+                _notifier.Handle("Invetario não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            var product = await _unitOfWork
+                .RepositoryFactory
+                .ProductRepository
+                .GetById(entity.IdProduct);
+
+            if (product == null)
+            {
+                _notifier.Handle("Product não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            entity.Product = null;
+
+            await _unitOfWork
+                .RepositoryFactory
+                .InventoryRepository
+                .Create(entity);
+
+            await _unitOfWork
+                .RepositoryFactory
+                .InventoryRepository
+                .Commit();
         }
 
-        public Task<IEnumerable<Inventory>> Find(Expression<Func<Inventory, bool>> predicate)
+        public async Task<IEnumerable<Inventory>> Find(Expression<Func<Inventory, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.InventoryRepository.Find(predicate);
         }
 
-        public Task<IEnumerable<Inventory>> GetAll()
+        public async Task<IEnumerable<Inventory>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.InventoryRepository.GetAll();
         }
 
-        public Task<Inventory> GetById(Guid id)
+        public async Task<Inventory> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.InventoryRepository.GetById(id);
         }
 
-        public Task Remove(Guid id, Inventory entity)
+        public async Task Remove(Guid id, Inventory entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Inventory invalida", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Inventory não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            await _unitOfWork.RepositoryFactory.InventoryRepository.Remove(id);
+
+            await _unitOfWork.RepositoryFactory.InventoryRepository.Commit();
         }
 
-        public Task<IEnumerable<Inventory>> Search(Expression<Func<Inventory, bool>> predicate = null, Func<IQueryable<Inventory>, IOrderedQueryable<Inventory>> orderBy = null, int? pageSize = null, int? pageIndex = null)
+        public async Task<IEnumerable<Inventory>> Search(Expression<Func<Inventory, bool>> predicate = null, Func<IQueryable<Inventory>, IOrderedQueryable<Inventory>> orderBy = null, int? pageSize = null, int? pageIndex = null)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.InventoryRepository.Search(predicate, orderBy, pageSize, pageIndex);
         }
 
-        public Task Update(Guid id, Inventory entity)
+        public async Task Update(Guid id, Inventory entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Inventory invalida", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new InventoryValidation(), entity))
+            {
+                _notifier.Handle("Inventory não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Inventory não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            var product = await _unitOfWork.RepositoryFactory.ProductRepository.GetById(entity.IdProduct);
+
+            if (product == null)
+            {
+                _notifier.Handle("Product não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            entity.Product = null;
+
+
+            _unitOfWork.RepositoryFactory.InventoryRepository.Update(entity);
+
+            await _unitOfWork.RepositoryFactory.InventoryRepository.Commit();
         }
     }
 }

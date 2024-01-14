@@ -3,21 +3,17 @@ using e_Estoque.Domain.Entities;
 using e_Estoque.Domain.Entities.Validations;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Services;
-using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 
 namespace e_Estoque.Service
 {
     public class CategoryService : BaseService, ICategoryService
     {
-        private readonly ILogger<CategoryService> _logger;
 
         public CategoryService(
             INotifier notifier,
-            IUnitOfWork unitOfWork,
-            ILogger<CategoryService> logger) : base(notifier, unitOfWork)
+            IUnitOfWork unitOfWork) : base(notifier, unitOfWork)
         {
-            _logger = logger;
         }
 
         public async Task Create(Category entity)

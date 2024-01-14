@@ -1,5 +1,6 @@
 ﻿using e_Estoque.CrossCutting.Notifications;
 using e_Estoque.Domain.Entities;
+using e_Estoque.Domain.Entities.Validations;
 using e_Estoque.Domain.Interfaces.Data;
 using e_Estoque.Domain.Interfaces.Services;
 using System.Linq.Expressions;
@@ -8,45 +9,127 @@ namespace e_Estoque.Service
 {
     public class SaleService : BaseService, ISaleService
     {
+        private readonly ISaleProductService _saleProductService;
+
         public SaleService(
             INotifier notifier,
-            IUnitOfWork unitOfWork) : base(notifier, unitOfWork)
+            IUnitOfWork unitOfWork,
+            ISaleProductService saleProductService) : base(notifier, unitOfWork)
         {
+            _saleProductService = saleProductService;
         }
 
-        public Task Create(Sale entity)
+        public async Task Create(Sale entity)
         {
-            throw new NotImplementedException();
+            if (!Validate(new SaleValidation(), entity))
+            {
+                _notifier.Handle("Sale não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            var customer = await _unitOfWork
+                .RepositoryFactory
+                .CustomerRepository
+                .GetById(entity.IdCustomer);
+
+            if (customer == null)
+            {
+                _notifier.Handle("Customer não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            entity.Customer = null;
+
+            await _unitOfWork
+                .RepositoryFactory
+                .SaleRepository
+                .Create(entity);
+
+            await _unitOfWork
+                .RepositoryFactory
+                .SaleRepository
+                .Commit();
+
+            await _saleProductService.Create(entity.SaleProduct);
         }
 
-        public Task<IEnumerable<Sale>> Find(Expression<Func<Sale, bool>> predicate)
+        public async Task<IEnumerable<Sale>> Find(Expression<Func<Sale, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.SaleRepository.Find(predicate);
         }
 
-        public Task<IEnumerable<Sale>> GetAll()
+        public async Task<IEnumerable<Sale>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.SaleRepository.GetAll();
         }
 
-        public Task<Sale> GetById(Guid id)
+        public async Task<Sale> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.SaleRepository.GetById(id);
         }
 
-        public Task Remove(Guid id, Sale entity)
+        public async Task Remove(Guid id, Sale entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Sale invalida", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Sale não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            await _unitOfWork.RepositoryFactory.SaleRepository.Remove(id);
+
+            await _unitOfWork.RepositoryFactory.SaleRepository.Commit();
         }
 
-        public Task<IEnumerable<Sale>> Search(Expression<Func<Sale, bool>> predicate = null, Func<IQueryable<Sale>, IOrderedQueryable<Sale>> orderBy = null, int? pageSize = null, int? pageIndex = null)
+        public async Task<IEnumerable<Sale>> Search(Expression<Func<Sale, bool>> predicate = null, Func<IQueryable<Sale>, IOrderedQueryable<Sale>> orderBy = null, int? pageSize = null, int? pageIndex = null)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.RepositoryFactory.SaleRepository.Search(predicate, orderBy, pageSize, pageIndex);
         }
 
-        public Task Update(Guid id, Sale entity)
+        public async Task Update(Guid id, Sale entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+            {
+                _notifier.Handle("Sale invalida", NotificationType.ERROR);
+                return;
+            }
+
+            if (!Validate(new SaleValidation(), entity))
+            {
+                _notifier.Handle("Sale não está valida!", NotificationType.ERROR);
+                return;
+            }
+
+            var entityDB = await GetById(entity.Id);
+
+            if (entityDB == null)
+            {
+                _notifier.Handle("Sale não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            var customer = await _unitOfWork.RepositoryFactory.CustomerRepository.GetById(entity.IdCustomer);
+
+            if (customer == null)
+            {
+                _notifier.Handle("Customer não encontrada", NotificationType.ERROR);
+                return;
+            }
+
+            entity.Customer = null;
+
+            _unitOfWork.RepositoryFactory.SaleRepository.Update(entity);
+
+            await _unitOfWork.RepositoryFactory.SaleRepository.Commit();
+            await _saleProductService.Update(entity.SaleProduct);
         }
     }
 }

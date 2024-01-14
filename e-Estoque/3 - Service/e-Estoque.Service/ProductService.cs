@@ -10,14 +10,11 @@ namespace e_Estoque.Service
 {
     public class ProductService : BaseService, IProductService
     {
-        private readonly ILogger<ProductService> _logger;
 
         public ProductService(
             INotifier notifier,
-            IUnitOfWork unitOfWork,
-            ILogger<ProductService> logger) : base(notifier, unitOfWork)
+            IUnitOfWork unitOfWork) : base(notifier, unitOfWork)
         {
-            _logger = logger;
         }
 
         public async Task Create(Product entity)

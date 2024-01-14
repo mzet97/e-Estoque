@@ -12,7 +12,6 @@ namespace e_Estoque.Data.Repositories
         protected readonly EstoqueDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
         protected readonly INotifier _notifier;
-        protected int Count;
 
         public Repository(
             EstoqueDbContext db,
@@ -20,7 +19,6 @@ namespace e_Estoque.Data.Repositories
         {
             Db = db;
             DbSet = db.Set<TEntity>();
-            Count = DbSet.AsQueryable().Count();
             _notifier = notifier;
         }
 
@@ -70,7 +68,7 @@ namespace e_Estoque.Data.Repositories
             int? pageIndex = null)
         {
             var query = DbSet.AsQueryable();
-            Count = query.Count();
+            var count = query.Count();
             int pages = 0;
 
             if (predicate != null)
@@ -80,7 +78,7 @@ namespace e_Estoque.Data.Repositories
 
             if (pageSize != null && pageSize.HasValue && pageSize > 0)
             {
-                pages = Count / pageSize.Value;
+                pages = count / pageSize.Value;
 
                 if (pageIndex != null && pageIndex.HasValue && pageIndex.Value > 0)
                 {

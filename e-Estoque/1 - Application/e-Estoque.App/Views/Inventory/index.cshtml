@@ -1,10 +1,10 @@
-﻿@model IEnumerable<e_Estoque.App.ViewModels.Product.ProductViewModel>
+﻿@model IEnumerable<e_Estoque.App.ViewModels.Inventory.InventoryViewModel>
 
 @{
     ViewData["Title"] = "index";
 }
 
-<h1>List of Products</h1>
+<h1>List of Inventory</h1>
 
 
 <table class="table table-primary table-striped table-hover table-bordered">
@@ -14,31 +14,13 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.DateOrder)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ShortDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Length)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCategory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCompany)
+                @Html.DisplayNameFor(model => model.IdProduct)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -60,31 +42,13 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Quantity)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.DateOrder)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ShortDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Weight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Height)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Length)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdCategory)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdCompany)
+                    @Html.DisplayFor(modelItem => item.IdProduct)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)

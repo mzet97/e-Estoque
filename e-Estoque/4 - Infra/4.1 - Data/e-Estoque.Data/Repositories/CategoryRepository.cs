@@ -20,7 +20,7 @@ namespace e_Estoque.Data.Repositories
             return await DbSet
                 .AsNoTracking()
                 .Include("Products")
-                .Include("Tax")
+                .Include("Taxs")
                 .Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
         }
@@ -38,7 +38,7 @@ namespace e_Estoque.Data.Repositories
             return await DbSet
                 .AsNoTracking()
                 .Include("Products")
-                .Include("Tax")
+                .Include("Taxs")
                 .Where(x => x.DeletedAt == null)
                 .ToListAsync();
         }
@@ -48,7 +48,7 @@ namespace e_Estoque.Data.Repositories
             return await DbSet
                 .AsNoTracking()
                 .Include("Products")
-                .Include("Tax")
+                .Include("Taxs")
                 .Where(predicate)
                 .ToListAsync();
         }
@@ -61,7 +61,7 @@ namespace e_Estoque.Data.Repositories
 
             if (predicate != null)
             {
-                query = query.Include("Product").Include("Tax").Where(predicate);
+                query = query.Include("Products").Include("Taxs").Where(predicate);
             }
 
             if (pageSize != null && pageSize.HasValue && pageSize > 0)

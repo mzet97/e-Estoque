@@ -15,23 +15,44 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Work', 11],
-            ['Eat', 2],
-            ['Commute', 2],
-            ['Watch TV', 2],
-            ['Sleep', 7]
-        ]);
+    google.charts.setOnLoadCallback(CarregaDados);
+
+    function CarregaDados() {
+        $.ajax({
+            url: '@Url.Action("GetInventoryJson", "Inventory")',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                drawChart(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    
+    function drawChart(data) {
+
+        var dataArray = [
+            ['Product', 'Quantity']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.nameProduct, item.quantity]);
+        });
+
+        var data = google.visualization.arrayToDataTable(dataArray);
 
         var options = {
-            title: 'My Daily Activities',
+            title: 'Inventory',
             is3D: true,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
     }
+
 </script>

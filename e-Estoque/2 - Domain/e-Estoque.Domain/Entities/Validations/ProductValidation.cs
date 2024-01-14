@@ -30,10 +30,6 @@ namespace e_Estoque.Domain.Entities.Validations
                .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
                .GreaterThan(0).WithMessage("The {PropertyName} needs to be greater 0");
 
-            RuleFor(r => r.Quantity)
-               .NotEmpty().WithMessage("The {PropertyName} needs to be provided")
-               .GreaterThan(0).WithMessage("The {PropertyName} needs to be greater 0");
-
             RuleFor(r => r.IdCategory)
                 .NotNull().WithMessage("The {PropertyName} needs to be provided");
 

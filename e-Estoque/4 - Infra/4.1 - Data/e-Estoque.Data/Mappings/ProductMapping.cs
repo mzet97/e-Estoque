@@ -9,10 +9,6 @@ namespace e_Estoque.Data.Mappings
         {
             builder.HasKey(p => p.Id);
 
-            builder.Property(c => c.Quantity)
-                .IsRequired()
-                .HasColumnType("INT");
-
             builder.Property(c => c.Description)
                 .IsRequired()
                 .HasColumnType("TEXT");

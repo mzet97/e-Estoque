@@ -25,12 +25,9 @@ namespace e_Estoque.App.Configurations
             #region Repository
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<ICompanyAddressRepository, CompanyAddressRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
-            services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
             services.AddScoped<ISaleProductRepository, SaleProductRepository>();
             services.AddScoped<ISaleRepository, SaleRepository>();
             services.AddScoped<ITaxRepository, TaxRepository>();
@@ -41,12 +38,9 @@ namespace e_Estoque.App.Configurations
             #region Service
 
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ICompanyAddressService, CompanyAddressService>();
             services.AddScoped<ICompanyService, CompanyService>();
-            services.AddScoped<ICustomerAddressService, CustomerAddressService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IInventoryService, InventoryService>();
-            services.AddScoped<ICustomerAddressService, CustomerAddressService>();
             services.AddScoped<ISaleProductService, SaleProductService>();
             services.AddScoped<ISaleService, SaleService>();
             services.AddScoped<ITaxService, TaxService>();

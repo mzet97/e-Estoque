@@ -31,7 +31,7 @@ namespace e_Estoque.Service
 
             await _unitOfWork.RepositoryFactory.CustomerRepository.Create(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.CustomerRepository.Commit();
+            await _unitOfWork.RepositoryFactory.CustomerRepository.Commit();
         }
 
         public async Task<IEnumerable<Customer>> Find(Expression<Func<Customer, bool>> predicate)
@@ -65,9 +65,9 @@ namespace e_Estoque.Service
                 return;
             }
 
-            _unitOfWork.RepositoryFactory.CustomerRepository.Update(entity);
+            await _unitOfWork.RepositoryFactory.CustomerRepository.Remove(id);
 
-            var result = await _unitOfWork.RepositoryFactory.CompanyRepository.Commit();
+            await _unitOfWork.RepositoryFactory.CompanyRepository.Commit();
         }
 
         public async Task<IEnumerable<Customer>> Search(Expression<Func<Customer, bool>> predicate = null, Func<IQueryable<Customer>, IOrderedQueryable<Customer>> orderBy = null, int? pageSize = null, int? pageIndex = null)
@@ -97,7 +97,7 @@ namespace e_Estoque.Service
 
             _unitOfWork.RepositoryFactory.CustomerRepository.Update(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.CustomerRepository.Commit();
+            await _unitOfWork.RepositoryFactory.CustomerRepository.Commit();
         }
     }
 }

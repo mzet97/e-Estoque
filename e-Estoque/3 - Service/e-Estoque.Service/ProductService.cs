@@ -57,7 +57,7 @@ namespace e_Estoque.Service
                 .ProductRepository
                 .Create(entity);
 
-            var result = await _unitOfWork
+            await _unitOfWork
                 .RepositoryFactory
                 .ProductRepository
                 .Commit();
@@ -94,9 +94,9 @@ namespace e_Estoque.Service
                 return;
             }
 
-            _unitOfWork.RepositoryFactory.ProductRepository.Update(entity);
+            await _unitOfWork.RepositoryFactory.ProductRepository.Remove(id);
 
-            var result = await _unitOfWork.RepositoryFactory.ProductRepository.Commit();
+            await _unitOfWork.RepositoryFactory.ProductRepository.Commit();
         }
 
         public async Task<IEnumerable<Product>> Search(Expression<Func<Product, bool>> predicate = null, Func<IQueryable<Product>, IOrderedQueryable<Product>> orderBy = null, int? pageSize = null, int? pageIndex = null)
@@ -151,7 +151,7 @@ namespace e_Estoque.Service
 
             _unitOfWork.RepositoryFactory.ProductRepository.Update(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.ProductRepository.Commit();
+            await _unitOfWork.RepositoryFactory.ProductRepository.Commit();
         }
     }
 }

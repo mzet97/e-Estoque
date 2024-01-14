@@ -329,9 +329,6 @@ namespace e_Estoque.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INT");
-
                     b.Property<string>("ShortDescription")
                         .IsRequired()
                         .HasColumnType("TEXT");

@@ -25,11 +25,6 @@ namespace e_Estoque.Data
         public ICategoryRepository CategoryRepository
         { get => _categoryRepository ?? (_categoryRepository = new CategoryRepository(_dbContext, _notifier)); }
 
-        private ICompanyAddressRepository _companyAddressRepository;
-
-        public ICompanyAddressRepository CompanyAddressRepository
-        { get => _companyAddressRepository ?? (_companyAddressRepository = new CompanyAddressRepository(_dbContext, _notifier)); }
-
         private ICompanyRepository _companyRepository;
 
         public ICompanyRepository CompanyRepository
@@ -40,10 +35,6 @@ namespace e_Estoque.Data
         public ICustomerRepository CustomerRepository
         { get => _customerRepository ?? (_customerRepository = new CustomerRepository(_dbContext, _notifier)); }
 
-        private ICustomerAddressRepository _customerAddressRepository;
-
-        public ICustomerAddressRepository CustomerAddressRepository
-        { get => _customerAddressRepository ?? (_customerAddressRepository = new CustomerAddressRepository(_dbContext, _notifier)); }
 
         private IInventoryRepository _inventoryRepository;
 

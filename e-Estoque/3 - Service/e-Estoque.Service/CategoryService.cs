@@ -30,7 +30,7 @@ namespace e_Estoque.Service
 
             await _unitOfWork.RepositoryFactory.CategoryRepository.Create(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.CategoryRepository.Commit();
+            await _unitOfWork.RepositoryFactory.CategoryRepository.Commit();
         }
 
         public async Task<Category> GetById(Guid id)
@@ -72,7 +72,7 @@ namespace e_Estoque.Service
 
             _unitOfWork.RepositoryFactory.CategoryRepository.Update(entity);
 
-            var result = await _unitOfWork.RepositoryFactory.CategoryRepository.Commit();
+            await _unitOfWork.RepositoryFactory.CategoryRepository.Commit();
         }
 
         public async Task Remove(Guid id, Category entity)
@@ -93,7 +93,7 @@ namespace e_Estoque.Service
 
             await _unitOfWork.RepositoryFactory.CategoryRepository.Remove(id);
 
-            var result = await _unitOfWork.RepositoryFactory.CategoryRepository.Commit();
+            await _unitOfWork.RepositoryFactory.CategoryRepository.Commit();
         }
 
         public async Task<IEnumerable<Category>> Search(

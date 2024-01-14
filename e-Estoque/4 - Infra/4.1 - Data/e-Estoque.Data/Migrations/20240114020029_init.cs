@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace e_Estoque.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Start : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -160,7 +161,6 @@ namespace e_Estoque.Data.Migrations
                     Weight = table.Column<decimal>(type: "REAL", nullable: false),
                     Height = table.Column<decimal>(type: "REAL", nullable: false),
                     Length = table.Column<decimal>(type: "REAL", nullable: false),
-                    Quantity = table.Column<int>(type: "INT", nullable: false),
                     Image = table.Column<string>(type: "TEXT", nullable: false),
                     IdCategory = table.Column<Guid>(type: "TEXT", nullable: false),
                     IdCompany = table.Column<Guid>(type: "TEXT", nullable: false),

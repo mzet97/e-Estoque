@@ -9,7 +9,6 @@
         public decimal Weight { get; set; }
         public decimal Height { get; set; }
         public decimal Length { get; set; }
-        public int Quantity { get; set; }
 
         public string Image { get; set; } = string.Empty;
 

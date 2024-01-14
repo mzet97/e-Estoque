@@ -11,8 +11,8 @@ using e_Estoque.App.Data;
 namespace e_Estoque.App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240112143019_identity")]
-    partial class identity
+    [Migration("20240114015923_initIdentity")]
+    partial class initIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

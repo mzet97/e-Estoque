@@ -11,9 +11,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" href="/Home/Index">
+                <a class="navbar-brand" href="/">
                     <img src="/img/logo.png" class="logo" alt="logo">
                 </a>
                 
@@ -25,24 +25,24 @@
                     @if (this.User.Identities.FirstOrDefault().IsAuthenticated)
                     {
                         <div class="dropdown">
-                            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Actions
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                                 <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">List of Categories</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Category" asp-action="Index">List of Categories</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Tax" asp-action="Index">List of Taxs</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Tax" asp-action="Index">List of Taxs</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Index">List of Companies</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Company" asp-action="Index">List of Companies</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">List of Customers</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Customer" asp-action="Index">List of Customers</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">List of Products</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="Index">List of Products</a>
                                 </li>
                             </ul>
                         </div>

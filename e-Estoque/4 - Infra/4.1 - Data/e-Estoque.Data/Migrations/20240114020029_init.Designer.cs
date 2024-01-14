@@ -11,8 +11,8 @@ using e_Estoque.Data.Context;
 namespace e_Estoque.Data.Migrations
 {
     [DbContext(typeof(EstoqueDbContext))]
-    [Migration("20240112143055_Start")]
-    partial class Start
+    [Migration("20240114020029_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -331,9 +331,6 @@ namespace e_Estoque.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("REAL");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INT");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()

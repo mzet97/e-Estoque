@@ -351,8 +351,3 @@ MigrationBackup/
 
 # log files
 *.log
-
-# sqlite database files
-*.db
-*.db-shm
-*.db-wal
